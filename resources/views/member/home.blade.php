@@ -6,8 +6,20 @@
 @section('content')
 
 <div id="onlineuser">
-    <div class="oluserlist chatbar-collapse">
+    <div class="oluserlist chatbar-collapse collapse">
         <ul>
+            <li>
+                <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="olname">Khairul Azlan</div>
+                <div class="olindicator"><span class="fa fa-circle"></span></div>
+                <div style="clear:both;"></div>
+            </li>
+            <li>
+                <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="olname">Khairul Azlan</div>
+                <div class="olindicator"><span class="fa fa-circle"></span></div>
+                <div style="clear:both;"></div>
+            </li>
             <li>
                 <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
                 <div class="olname">Khairul Azlan</div>
@@ -38,12 +50,4 @@
     </div>
 </div>
 
-<script>
-    window.onresize = displayWindowSize;
-    window.onload = displayWindowSize;
-    function displayWindowSize() {
-        // your size calculation code here
-        document.getElementById("dimensions").innerHTML = myWidth + "x" + myHeight;
-    };
-</script>
 @Stop

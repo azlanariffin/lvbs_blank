@@ -410,12 +410,7 @@ table.dataTable thead .sorting:after {
 }
 
 @media (min-width: 768px) {
-    .chatbar-collapse {
-        width: auto;
-        border-top: 0;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
+
     .chatbar-collapse.collapse {
         display: block !important;
         height: auto !important;
@@ -425,10 +420,8 @@ table.dataTable thead .sorting:after {
     .chatbar-collapse.in {
         overflow-y: visible;
     }
-    .chatbar-fixed-top .navbar-collapse,
-    .chatbar-static-top .navbar-collapse,
-    .chatbar-fixed-bottom .navbar-collapse {
-        padding-right: 0;
-        padding-left: 0;
-    }
+}
+
+.chatbox {
+
 }
