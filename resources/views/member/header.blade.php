@@ -434,11 +434,11 @@
                             }
                         }
                         else {
-                            if (userId != arrValues[i].split("|")[1]) {
-                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
+                            if (userId != rtnVal.split("|")[1]) {
+                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + rtnVal.split("|")[1]);
 
                                 if (elemUsersOnline.html() == undefined) {
-                                    $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                    $("#onlineUsers").append("<li id=\"userid-" + rtnVal.split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
                                 }
                             }
                         }
