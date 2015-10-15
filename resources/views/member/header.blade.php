@@ -488,7 +488,7 @@
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
                     <div style="clear:both;"></div>
                 </li>
-                <li>
+                <li data-id="23">
                     <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olname">Khairul Azlan</div>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
