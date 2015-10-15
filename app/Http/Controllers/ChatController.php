@@ -61,6 +61,31 @@ class ChatController extends Controller
           'return_value' => $rtnVal
       ));
     }
+
+    public function getUserName() {
+        $inputId = Input::get("user_id");
+
+        $user = User::find($inputId);
+
+        return Response::json(array(
+            'validation_failed' => 0,
+            'return_value' => $user->name,
+            'is_active' => $user->active
+        ));
+    }
+
+    public function postMessageToUser() {
+      $from_id = Input::get("from_id");
+      $to_id = Input::get("to_id");
+      $message = Input::get("message");
+
+      $inbox = new Inbox();
+      $inbox->from_id = $from_id;
+      $inbox->to_id = $to_id;
+      $inbox->message = $message;
+      $inbox->read = 0;
+      $inbox->save();
+    }
 }
 
 

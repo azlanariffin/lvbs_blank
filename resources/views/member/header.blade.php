@@ -367,11 +367,6 @@
     </div>
 
 <script>
-    $("#onlineuser li").click(function() {
-        $("#chatbox_cont ul").append('<li class="panel panel-default"><div class="panel-heading">Chat Box</div></li>');
-    });
-
-
     var conn;
 
     var userName = "{{ Auth::user()->name }}";
@@ -422,13 +417,10 @@
                             for (i = 0; i < arrValues.length; i++) {
                                 
                                 if (userId != arrValues[i].split("|")[1]) {
-                                    //console.log("find users online");
-
                                     var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
 
                                     if (elemUsersOnline.html() == undefined) {
-                                        //console.log("executed");
-                                        $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                        $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\" onclick=\"createChatTab(" + arrValues[i].split("|")[1] + ", '" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "')\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
                                     }
                                 }
                             }
@@ -438,13 +430,12 @@
                                 var elemUsersOnline = $("#onlineUsers").find("#userid-" + rtnVal.split("|")[1]);
 
                                 if (elemUsersOnline.html() == undefined) {
-                                    $("#onlineUsers").append("<li id=\"userid-" + rtnVal.split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                    $("#onlineUsers").append("<li id=\"userid-" + rtnVal.split("|")[1] + "\" onclick=\"createChatTab(" + rtnVal.split("|")[1] + ", '" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "')\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
                                 }
                             }
                         }
                         
                     }
-                    
                     refreshUsersOnline();
                 }
             }
@@ -470,7 +461,6 @@
                         $("#userid-" + rtnVal).remove();
                     }
                 }
-
                 refreshUsersOnline();
             }
         });
@@ -482,25 +472,31 @@
 
     function createChatTab(id, uname) 
     {
-        var elemChatTabs = $("#chatTabs").find("#usertab" + id);
+        var elemChatTabs = $("#chatbox_cont ul").find("#usertab" + id);
 
         if (elemChatTabs.html() == undefined)
         {
-            $("#chatTabs").append("<li id=\"usertab" + id + "\"><a href='#tab" + id + "default' data-toggle='tab'>" + ((id == 1) ? "Admin" : uname) + "</a></li>");
-
-            var elemToCreate = "<div class=\"tab-pane fade\" id=\"tab" + id + "default\">";
-            elemToCreate += "<ul id=\"chatMessages" + id + "\" class=\"chatMessages\">";
+            var elemToCreate = "<li id=\"usertab" + id + "\">";
+            elemToCreate += "<div class=\"panel panel-default\">";
+            elemToCreate += "<div class=\"panel-heading\">";
+            elemToCreate += ((id == 1) ? "Admin" : uname);
+            elemToCreate += "<div class=\"panel-control pull-right\">";
+            elemToCreate += "<a data-toggle=\"collapse\" data-target=\"#chat" + id + "\" href=\"#chat" + id + "\"><i class=\"fa fa-chevron-down\"></i></a>";
+            elemToCreate += "</div>";
+            elemToCreate += "</div>";
+            elemToCreate += "<div id=\"chat" + id + "\" class=\"panel-body panel-collapse collapse in\">";
+            elemToCreate += "<div class=\"chatarea\">";
+            elemToCreate += "<ul>";
             elemToCreate += "</ul>";
+            elemToCreate += "</div>";
             elemToCreate += "<div>";
-            elemToCreate += "<span id=\"typestatus" + id + "\"></span>";
-            elemToCreate += "</div>";
-            elemToCreate += "<div style=\"display:table; width: 100%;\">";
-            elemToCreate += "<span style=\"display:table-cell; width: 65px;\">Write here</span>";
-            elemToCreate += "<input style=\"display:table-cell; width: 100%;\" type=\"text\" name=\"chatText\" id=\"chatText" + id + "\" onkeyup=\"keypress(event, " + id + ")\" />";
+            elemToCreate += "<input id=\"chatInput" + id + "\" class=\"chatinput\" onkeyup=\"keypress(event, " +  id+ ")\">";
             elemToCreate += "</div>";
             elemToCreate += "</div>";
+            elemToCreate += "</div>";
+            elemToCreate += "</li>"
 
-            $("#chatContents").append(elemToCreate);
+            $("#chatbox_cont ul").append(elemToCreate);
         }
 
     }
@@ -560,35 +556,17 @@
         {
             if (message.indexOf("Me:") > -1)
             {
-                $("#chatMessages" + tabid).append("<li>" + message + "</li>");
-                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+                $("#chat" + tabid + " .chatarea ul").append("<li class=\"self\"><div class=\"chattri\"></div>" + message + "</li>");
+                $("#chat" + tabid + " .chatarea").animate({ scrollTop: $("#chat" + tabid + " .chatarea ul li:last").offset().top }, 1000);
             }
             else
             {
-                if (tabid == 0)
+                // If from user to user
+                if (userId == tabid)
                 {
-                    // If from public room
-                    if (usrid == 1)
-                    {
-                        $("#chatMessages" + tabid).append("<li>Admin:" + message.split(":")[1] + "</li>");
-                        $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
-                    }
-                    else
-                    {
-                        $("#chatMessages" + tabid).append("<li>" + message + "</li>");
-                        $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
-                    }
-                }
-                else
-                {
-                    // If from user to user
-                    if (userId == tabid)
-                    {
-                        createChatTab(usrid, message.split(":")[0]);
-                        $("#chatMessages" + usrid).append("<li>" + ((usrid == 1) ? "Admin:" + message.split(":")[1] : message) + "</li>");
-                        $("#chatMessages" + usrid).scrollTop($("#chatMessages" + usrid)[0].scrollHeight);
-                    }
-                    
+                    createChatTab(usrid, message.split(":")[0]);
+                    $("#chat" + usrid + " .chatarea ul").append("<li class=\"other\"><div class=\"chattri\"></div>" + ((usrid == 1) ? "Admin:" + message.split(":")[1] : message) + "</li>");
+                    $("#chat" + usrid + " .chatarea").animate({ scrollTop: $("#chat" + usrid + " .chatarea ul li:last").offset().top }, 1000);
                 }
             }
         }
@@ -598,7 +576,7 @@
     {
         if (e.keyCode == 13)
         {
-            var message = $("#chatText" + id).val();
+            var message = $("#chatInput" + id).val();
 
             if (id == 0)
             {
@@ -636,7 +614,6 @@
                                     success: function (data) {
                                     }
                                 });
-
                                 addMessageToChatBox(userId, id, "Me: " + message);
                             }
                         }
@@ -644,12 +621,12 @@
                 });
             }
 
-            $("#chatText" + id).val("");
+            $("#chatInput" + id).val("");
             conn.send(userId + ";" + id + ";none");
         }
         else
         {
-            conn.send(userId + ";" + id + ";" + ((userId == 1) ? "Admin is typing ..." : userName + " is typing ..."));
+            //conn.send(userId + ";" + id + ";" + ((userId == 1) ? "Admin is typing ..." : userName + " is typing ..."));
         }
     }    
 
