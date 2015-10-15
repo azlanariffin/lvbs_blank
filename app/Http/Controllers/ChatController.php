@@ -45,6 +45,22 @@ class ChatController extends Controller
           'return_value' => $rtnVal
       ));
     }
+
+    public function removeUsersOffline() {
+      $chat_id = Input::get("chat_id");
+      $user_select = User::select('id')->where('chat_id', '=', $chat_id)->get();
+
+      $rtnVal = "";
+
+      foreach($user_select as $usr_select) {
+        $rtnVal = $usr_select->id;
+      }
+
+      return Response::json(array(
+          'validation_failed' => 0,
+          'return_value' => $rtnVal
+      ));
+    }
 }
 
 

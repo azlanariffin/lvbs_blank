@@ -187,6 +187,7 @@ class UserController extends Controller
     {
         if (Auth::check())
         {
+            $this->setUserOffline();
             Auth::logout();
             return Redirect::to('login')->with('message', 'You have logged out!');
         }
@@ -194,6 +195,13 @@ class UserController extends Controller
         {
             return Redirect::to('login');
         }
+    }
+
+    public function setUserOffline() {
+      $user_id = Auth::user()->id;
+      $user = User::find($user_id);
+      $user->active = 0;
+      $user->save();
     }
 
 }

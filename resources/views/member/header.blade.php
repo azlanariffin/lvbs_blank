@@ -415,24 +415,36 @@
 
                 if (validation_failed == 0) {
                     if (rtnVal != "") {
-                        var arrValues = rtnVal.split(";");
 
-                        for (i = 0; i < arrValues.length; i++) {
+                        if (rtnVal.indexOf(";") > -1) {
+                            var arrValues = rtnVal.split(";");
 
-                            if (userId != arrValues[i].split("|")[1]) {
-                                console.log("find users online");
+                            for (i = 0; i < arrValues.length; i++) {
+                                
+                                if (userId != arrValues[i].split("|")[1]) {
+                                    //console.log("find users online");
 
-                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
+                                    var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
 
-                                if (elemUsersOnline.html() == undefined) {
-                                    console.log("executed");
-                                    $("#onlineUsers").append("<li id=\"userid- " + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
-                                    
-                                    
+                                    if (elemUsersOnline.html() == undefined) {
+                                        //console.log("executed");
+                                        $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                    }
                                 }
                             }
                         }
+                        else {
+                            if (userId != arrValues[i].split("|")[1]) {
+                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
+
+                                if (elemUsersOnline.html() == undefined) {
+                                    $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                }
+                            }
+                        }
+                        
                     }
+                    
                     refreshUsersOnline();
                 }
             }
