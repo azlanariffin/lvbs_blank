@@ -10,7 +10,18 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        {!! Form::open(array('url'=>'signup','method'=>'POST')) !!}
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        {!! Form::open(array('url'=>'login','method'=>'POST')) !!}
                             <fieldset>
                                 <div class="form-group">
                                     {!! Form::email('email', '', array('class'=>'form-control','placeholder'=>trans('front.email'))) !!}

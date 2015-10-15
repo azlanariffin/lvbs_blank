@@ -10,6 +10,17 @@
                         <h3 class="panel-title">Please Sign Up</h3>
                     </div>
                     <div class="panel-body">
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         {!! Form::open(array('url'=>'signup','method'=>'POST')) !!}
                             <fieldset>
                                 <div class="form-group">
