@@ -34,3 +34,4 @@ Route::get('/members/personal-info', ['as' => 'personal-info', 'uses' => 'Member
 Route::get('/setUserOnline', 'ChatController@setUserOnline');
 Route::get('/setUserChatId', 'ChatController@setUserChatId');
 Route::get('/getUsersOnline', 'ChatController@getUsersOnline');
+Route::get('/removeUsersOffline', 'ChatController@removeUsersOffline');
