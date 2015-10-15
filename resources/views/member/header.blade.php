@@ -23,6 +23,8 @@
     <!-- Custom Fonts -->
     <link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
+    <script src="{{asset('bower_components/jquery/dist/jquery.js')}}"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,14 +39,14 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <nav class="navbar navbar-default navbar-fixed-top"  role="navigation" style="margin-bottom: 0">
+        <div id="topnavi" class="navbar-header">
+            <div class="topmenuicon" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="fa fa-navicon"></span>
-            </button>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".chatbar-collapse">
+            </div>
+            <div class="topmenuicon" data-toggle="collapse" data-target=".chatbar-collapse">
                 <span class="fa fa-comments-o"></span>
-            </button>
+            </div>
             <a class="navbar-brand" href="index.html">LARAVEL</a>
         </div>
         <!-- /.navbar-header -->
@@ -257,6 +259,7 @@
             </li>
             <!-- /.dropdown -->
         </ul>
+
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default sidebar" role="navigation">
@@ -355,3 +358,89 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
+
+    <div id="onlineuser">
+        <div class="oluserlist chatbar-collapse collapse">
+            <ul>
+                <li class="chatuserli">
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan 1</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan 2</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan 3</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+<script>
+    $(".chatuserli").click(function() {
+        $("#chatbox_cont ul").append('<li class="panel panel-default"><div class="panel-heading">Chat Box</div></li>');
+    });
+</script>

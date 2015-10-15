@@ -16,12 +16,13 @@ body {
     padding: 0 15px;
     min-height: 568px;
     background-color: #fff;
+    margin-top:100px;
 }
 
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 200px 0 250px;
+        margin: 51px 200px 0 250px;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
         border-right: 1px solid #e7e7e7;
@@ -131,9 +132,13 @@ body {
 @media(min-width:768px) {
     .sidebar {
         z-index: 1;
-        position: absolute;
+        position: fixed;
         width: 250px;
         margin-top: 51px;
+    }
+
+    .navbar-top-links {
+        float:right;
     }
 
     .navbar-top-links .dropdown-messages,
@@ -356,15 +361,69 @@ table.dataTable thead .sorting:after {
 
 #onlineuser {
     padding:0px;
+    z-index:100;
+}
+
+.topmenuicon {
+    display:none;
+    float:right;
 }
 
 @media(min-width:768px) {
     #onlineuser {
-        position:absolute;
+        position:fixed;
         right:0px;
         width:200px;
         padding:0px;
-        max-height: 500px;
+    }
+}
+
+@media(max-width:768px) {
+    #onlineuser {
+        position:fixed;
+        display:block;
+        max-height: 340px;
+        overflow-y:auto !important;
+        width:100% !important;
+        background-color:#f8f8f8;
+        z-index:100;
+        border-bottom:thin solid #e7e7e7;
+    }
+    #onlineuser ul li .olname {
+        display:block !important;
+    }
+    #onlineuser ul li .olindicator {
+        position:static !important;
+        margin-top:0px !important;
+        margin-left:0px !important;
+        float:right;
+    }
+    #page-wrapper {
+        margin: 100px 0 0 0 !important;
+    }
+    .topmenuicon {
+        display:block;
+        padding:10px;
+        float:right;
+        font-size:20px;
+    }
+}
+
+@media(max-width:1100px) {
+    #onlineuser {
+        width:50px;
+        z-index:100;
+    }
+    #onlineuser ul li .olname {
+        display:none;
+    }
+    #onlineuser ul li .olindicator {
+        position:absolute;
+        margin-top:15px;
+        margin-left:25px;
+    }
+    #page-wrapper {
+        margin: 51px 50px 0 250px;
     }
 }
 
@@ -376,14 +435,15 @@ table.dataTable thead .sorting:after {
 #onlineuser ul li {
     list-style-type: none;
     padding:5px;
-    border-bottom:thin solid #FFF;
-    border-top:thin solid #FFF;
+    border-bottom:thin solid #f8f8f8;
+    border-top:thin solid #f8f8f8;
 }
 
 #onlineuser ul li:hover {
     background-color: #FFFFFF;
     border-top:thin solid #EEE;
     border-bottom:thin solid #EEE;
+    cursor:pointer;
 }
 
 #onlineuser .oluserlist {
@@ -405,10 +465,9 @@ table.dataTable thead .sorting:after {
     padding-top:6px;
     padding-right:10px;
     float:right;
-    color:green;
+    color:limegreen;
     font-size:10px;
 }
-
 @media (min-width: 768px) {
 
     .chatbar-collapse.collapse {
@@ -422,6 +481,28 @@ table.dataTable thead .sorting:after {
     }
 }
 
-.chatbox {
+#chatbox_cont ul {
+    margin:0;
+    padding:0 200px 0 0;
+}
 
+#chatbox_cont ul li {
+    list-style-type: none;
+    display:block;
+    width:250px;
+    border:thin solid #CCC;
+    float:right;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:0px;
+}
+
+#chatbox_cont ul li .panel-footer {
+    margin:0;
+    padding:0;
+    height:35px;
+}
+
+#chatbox_cont ul li .chatarea {
+    height:300px;
 }
