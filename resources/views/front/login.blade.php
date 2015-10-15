@@ -10,6 +10,20 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
+<<<<<<< HEAD
+=======
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+>>>>>>> 1729238593aadf7d0c06051640b1218b8e2fc58c
                         {!! Form::open(array('url'=>'login','method'=>'POST')) !!}
                             <fieldset>
                                 <div class="form-group">

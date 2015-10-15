@@ -434,13 +434,133 @@
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
                     <div style="clear:both;"></div>
                 </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul Azlan</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
+                <li>
+                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="olname">Khairul LAST</div>
+                    <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div style="clear:both;"></div>
+                </li>
 
             </ul>
         </div>
     </div>
 
 <script>
-    $(".chatuserli").click(function() {
+    $("#onlineuser li").click(function() {
         $("#chatbox_cont ul").append('<li class="panel panel-default"><div class="panel-heading">Chat Box</div></li>');
     });
 </script>
