@@ -361,199 +361,8 @@
 
     <div id="onlineuser">
         <div class="oluserlist chatbar-collapse collapse">
-            <ul>
-                <li class="chatuserli">
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan 1</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan 2</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan 3</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul LAST</div>
-                    <div class="olindicator"><span class="fa fa-circle"></span></div>
-                    <div style="clear:both;"></div>
-                </li>
+            <ul id="onlineUsers">
+                
 
             </ul>
         </div>
@@ -563,4 +372,349 @@
     $("#onlineuser li").click(function() {
         $("#chatbox_cont ul").append('<li class="panel panel-default"><div class="panel-heading">Chat Box</div></li>');
     });
+
+
+    var conn;
+
+    var userName = "{{ Auth::user()->name }}";
+    var userId = "{{ Auth::user()->id }}";
+    var token = $("meta[name='csrf-token']").attr("content");
+    var port = "9090";
+    var uri = "{{ explode(':', str_replace('http://', '', str_replace('https://', '', App::make('url')->to('/'))))[0] }}";
+    port = port.length == 0 ? '9090' : port;
+
+    function setUserOnline(userid) {
+        $.ajax({
+            type: "GET",
+            url: "{{ url('setUserOnline') }}",
+            data: {user_id: userid, _token: token},
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    }
+
+    function setUserChatId(userid, chatid) {
+        $.ajax({
+            type: "GET",
+            url: "{{ url('setUserChatId') }}",
+            data: {user_id: userid, chat_id: chatid, _token: token},
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    }       
+
+    function getUsersOnline() {
+        $.ajax({
+            type: "GET",
+            url: "{{ url('getUsersOnline') }}",
+            data: {_token: token},
+            dataType: "json",
+            success: function (data) {
+                var validation_failed = data.validation_failed;
+                var rtnVal = data.return_value;
+
+                if (validation_failed == 0) {
+                    if (rtnVal != "") {
+                        var arrValues = rtnVal.split(";");
+
+                        for (i = 0; i < arrValues.length; i++) {
+
+                            if (userId != arrValues[i].split("|")[1]) {
+                                console.log("find users online");
+
+                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
+
+                                if (elemUsersOnline.html() == undefined) {
+                                    console.log("executed");
+                                    $("#onlineUsers").append("<li id=\"userid- " + arrValues[i].split("|")[1] + "\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
+                                    
+                                    
+                                }
+                            }
+                        }
+                    }
+                    refreshUsersOnline();
+                }
+            }
+        });
+    }
+
+    function removeUsersOffline(chatid) {
+        $.ajax({
+            type: "GET",
+            url: "{{ url('removeUsersOffline') }}",
+            data: {chat_id: chatid, _token: token},
+            dataType: "json",
+            success: function (data) {
+                var validation_failed = data.validation_failed;
+                var rtnVal = data.return_value;
+
+                if (validation_failed == 0) {
+                    console.log("users offline");
+                            
+                    var elemUsersOffline = $("#onlineUsers").find("#userid-" + rtnVal);
+
+                    if (elemUsersOffline.html() != undefined) {
+                        $("#userid-" + rtnVal).remove();
+                    }
+                }
+
+                refreshUsersOnline();
+            }
+        });
+    }
+
+    function refreshUsersOnline() {
+        $("#onlineUsers").scrollTop($("#onlineUsers")[0].scrollHeight);
+    }
+
+    function createChatTab(id, uname) 
+    {
+        var elemChatTabs = $("#chatTabs").find("#usertab" + id);
+
+        if (elemChatTabs.html() == undefined)
+        {
+            $("#chatTabs").append("<li id=\"usertab" + id + "\"><a href='#tab" + id + "default' data-toggle='tab'>" + ((id == 1) ? "Admin" : uname) + "</a></li>");
+
+            var elemToCreate = "<div class=\"tab-pane fade\" id=\"tab" + id + "default\">";
+            elemToCreate += "<ul id=\"chatMessages" + id + "\" class=\"chatMessages\">";
+            elemToCreate += "</ul>";
+            elemToCreate += "<div>";
+            elemToCreate += "<span id=\"typestatus" + id + "\"></span>";
+            elemToCreate += "</div>";
+            elemToCreate += "<div style=\"display:table; width: 100%;\">";
+            elemToCreate += "<span style=\"display:table-cell; width: 65px;\">Write here</span>";
+            elemToCreate += "<input style=\"display:table-cell; width: 100%;\" type=\"text\" name=\"chatText\" id=\"chatText" + id + "\" onkeyup=\"keypress(event, " + id + ")\" />";
+            elemToCreate += "</div>";
+            elemToCreate += "</div>";
+
+            $("#chatContents").append(elemToCreate);
+        }
+
+    }
+
+    function addMessageToChatBox(usrid, tabid, message)
+    {
+        if (message.indexOf("typing") > -1)
+        {
+            if (tabid == 0)
+            {
+                $("#typestatus" + tabid).html(message);
+            }
+            else
+            {
+                if (tabid == userId)
+                {
+                    $("#typestatus" + usrid).html(message);
+                }
+            }
+        }
+
+        else if (message.indexOf("none") > -1)
+        {
+            if (tabid == 0)
+            {
+                $("#typestatus" + tabid).html("");
+            }
+            else
+            {
+                $("#typestatus" + usrid).html("");
+            }
+        }
+        else if (message.indexOf("Connection established!") > -1)
+        {
+            getUsersOnline();
+
+            //$("#chatMessages" + tabid).append("<li>" + message + "</li>");
+            //$("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+        }
+        else if (message.indexOf("is online") > -1)
+        {
+            getUsersOnline();
+
+            /*if (usrid == 1 && userId != usrid)
+            {
+                $("#chatMessages" + tabid).append("<li>Admin is online</li>");
+                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+            }
+            else
+            {
+                getUsersOnline();
+                $("#chatMessages" + tabid).append("<li>" + ((usrid == 1) ? "Admin is online" : message) + "</li>");
+                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+            }*/
+        }
+        else
+        {
+            if (message.indexOf("Me:") > -1)
+            {
+                $("#chatMessages" + tabid).append("<li>" + message + "</li>");
+                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+            }
+            else
+            {
+                if (tabid == 0)
+                {
+                    // If from public room
+                    if (usrid == 1)
+                    {
+                        $("#chatMessages" + tabid).append("<li>Admin:" + message.split(":")[1] + "</li>");
+                        $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+                    }
+                    else
+                    {
+                        $("#chatMessages" + tabid).append("<li>" + message + "</li>");
+                        $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
+                    }
+                }
+                else
+                {
+                    // If from user to user
+                    if (userId == tabid)
+                    {
+                        createChatTab(usrid, message.split(":")[0]);
+                        $("#chatMessages" + usrid).append("<li>" + ((usrid == 1) ? "Admin:" + message.split(":")[1] : message) + "</li>");
+                        $("#chatMessages" + usrid).scrollTop($("#chatMessages" + usrid)[0].scrollHeight);
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    function keypress(e, id)
+    {
+        if (e.keyCode == 13)
+        {
+            var message = $("#chatText" + id).val();
+
+            if (id == 0)
+            {
+                conn.send(userId + ";" + id + ";" + userName + ": " + message);
+                addMessageToChatBox(userId, id, "Me: " + message);
+            }
+            else
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('getUserName') }}",
+                    data: {user_id: id, _token: token},
+                    dataType: "json",
+                    success: function (data) {
+                        var validation_failed = data.validation_failed;
+                        var rtnVal = data.return_value;
+                        var is_active = data.is_active;
+
+                        if (validation_failed == 0) 
+                        {
+                            if (is_active == 1)
+                            {
+                                // If user is online then do below
+                                conn.send(userId + ";" + id + ";" + userName + ": " + message);
+                                addMessageToChatBox(userId, id, "Me: " + message);
+                            }
+                            else
+                            {
+                                //If user is offline then do below
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ url('postMessageToUser') }}",
+                                    data: {from_id: userId, to_id: id, message: message, _token: token},
+                                    dataType: "json",
+                                    success: function (data) {
+                                    }
+                                });
+
+                                addMessageToChatBox(userId, id, "Me: " + message);
+                            }
+                        }
+                    }
+                });
+            }
+
+            $("#chatText" + id).val("");
+            conn.send(userId + ";" + id + ";none");
+        }
+        else
+        {
+            conn.send(userId + ";" + id + ";" + ((userId == 1) ? "Admin is typing ..." : userName + " is typing ..."));
+        }
+    }    
+
+
+
+    $(document).ready(function() {
+        conn = new WebSocket('ws://' + uri + ':' + port);
+
+        conn.onerror = function (event) {
+        }
+
+        conn.onclose = function (event)
+        {
+            var reason;
+
+            if (event.code == 1000)
+                reason = "Normal closure, meaning that the purpose for which the connection was established has been fulfilled.";
+            else if (event.code == 1001)
+                reason = "An endpoint is \"going away\", such as a server going down or a browser having navigated away from a page.";
+            else if (event.code == 1002)
+                reason = "An endpoint is terminating the connection due to a protocol error";
+            else if (event.code == 1003)
+                reason = "An endpoint is terminating the connection because it has received a type of data it cannot accept (e.g., an endpoint that understands only text data MAY send this if it receives a binary message).";
+            else if (event.code == 1004)
+                reason = "Reserved. The specific meaning might be defined in the future.";
+            else if (event.code == 1005)
+                reason = "No status code was actually present.";
+            else if (event.code == 1006)
+                reason = "Abnormal error, e.g., without sending or receiving a Close control frame";
+            else if (event.code == 1007)
+                reason = "An endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [http://tools.ietf.org/html/rfc3629] data within a text message).";
+            else if (event.code == 1008)
+                reason = "An endpoint is terminating the connection because it has received a message that \"violates its policy\". This reason is given either if there is no other sutible reason, or if there is a need to hide specific details about the policy.";
+            else if (event.code == 1009)
+                reason = "An endpoint is terminating the connection because it has received a message that is too big for it to process.";
+            else if (event.code == 1010) // Note that this status code is not used by the server, because it can fail the WebSocket handshake instead.
+                reason = "An endpoint (client) is terminating the connection because it has expected the server to negotiate one or more extension, but the server didn't return them in the response message of the WebSocket handshake. <br /> Specifically, the extensions that are needed are: " + event.reason;
+            else if (event.code == 1011)
+                reason = "A server is terminating the connection because it encountered an unexpected condition that prevented it from fulfilling the request.";
+            else if (event.code == 1015)
+                reason = "The connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can't be verified).";
+            else
+                reason = "Unknown reason";
+        };
+
+        conn.onopen = function (e)
+        {
+            setUserOnline(userId);
+            addMessageToChatBox(userId, 0, "Connection established!");
+            conn.send(userId + ";" + "0;" + userName + " is online");
+        };
+
+        conn.onmessage = function (e)
+        {
+            if (e.data.indexOf("user_connected") > -1) {
+                var r_conn_chatid = e.data.split(";")[0];
+                var r_userid = e.data.split(";")[2];
+
+                if (r_conn_chatid == r_userid) {
+                    setUserChatId(userId, r_conn_chatid);
+                }
+            }
+            else if (e.data.indexOf("user_disconnected") > -1) {
+                var r_disconn_chatid = e.data.split(";")[0];
+                var r_userid = e.data.split(";")[2];
+
+                removeUsersOffline(r_disconn_chatid);
+            }
+            else {
+                var uid = e.data.split(";")[0];
+                var tabid = e.data.split(";")[1];
+                var themsg = e.data.split(";")[2];
+
+                addMessageToChatBox(uid, tabid, themsg);
+            }
+        };
+    });    
 </script>

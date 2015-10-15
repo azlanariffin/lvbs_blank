@@ -27,3 +27,10 @@ Route::get('/reset-password', ['as' => 'reset-password', 'uses' => 'UserViewCont
 Route::get('/members/home', ['as' => 'home', 'uses' => 'MemberViewController@home',]);
 
 Route::get('/members/personal-info', ['as' => 'personal-info', 'uses' => 'MemberViewController@personal_info',]);
+
+
+
+// Users Chat Events
+Route::get('/setUserOnline', 'ChatController@setUserOnline');
+Route::get('/setUserChatId', 'ChatController@setUserChatId');
+Route::get('/getUsersOnline', 'ChatController@getUsersOnline');
