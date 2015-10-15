@@ -10,7 +10,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        {!! Form::open(array('url'=>'signup','method'=>'POST')) !!}
+                        {!! Form::open(array('url'=>'login','method'=>'POST')) !!}
                             <fieldset>
                                 <div class="form-group">
                                     {!! Form::email('email', '', array('class'=>'form-control','placeholder'=>trans('front.email'))) !!}
