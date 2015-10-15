@@ -17,14 +17,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('user_type_id');
-            $table->boolen('active');
+            $table->boolean('active');
             $table->integer('chat_id');
             $table->string('email_verify_code');
-            $table->boolen('email_verify_status');
-            $table->string('email')->unique();
+            $table->boolean('email_verify_status');
             $table->string('password', 60);
             $table->string('alias', 100);
-            $table->boolen('alias_change');
+            $table->boolean('alias_change');
             $table->rememberToken();
             $table->timestamps();
         });
