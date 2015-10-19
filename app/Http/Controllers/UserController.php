@@ -120,12 +120,13 @@ class UserController extends Controller
             $user = new User();
             $user->email = strtolower($email);
             $user->email_verify_code = $emailverificationcode;
+            $user->email_verify_status = '1';
             $user->user_type_id = '3';
             $user->password = $password;
             $user->alias = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz"), 0, 8);
             $user->save();
 
-            return Redirect::to('notice')->with('email', $email);
+            return Redirect::to('login')->with('success', 'Registration success! You may now login!');
 
         }
     }

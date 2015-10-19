@@ -7,7 +7,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">{{trans('front.welcome_please_login')}}</h3>
                     </div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
@@ -19,8 +19,10 @@
                                 </ul>
                             </div>
                         @endif
-                        {!! Form::open(array('url'=>'login','method'=>'POST')) !!}
-                            <fieldset>
+
+                        <fieldset>
+
+                            {!! Form::open(array('url'=>'login','method'=>'POST')) !!}
                                 <div class="form-group">
                                     {!! Form::email('email', '', array('class'=>'form-control','placeholder'=>trans('front.email'))) !!}
                                 </div>
@@ -29,28 +31,28 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="rememberme" type="checkbox" value="1">{{trans('front.remember_me')}}
                                     </label>
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                {!! Form::submit(trans('front.sign_up'), array('class'=>'btn btn-success btn-quirk btn-block')) !!}
-                            </fieldset>
-                        {!! Form::close() !!}
+                                {!! Form::submit(trans('front.login'), array('class'=>'btn btn-success btn-block')) !!}
+                                <br>
+                                <a href="{{URL::route('signup')}}" class="btn btn-default btn-block">{{trans('front.not_a_member_sign_up')}}</a>
+                            {!! Form::close() !!}
+                        </fieldset>
                     </div>
+
+                    <div id="polyglotLanguageSwitcher" class="front_langchooser">
+                        <form id="updatelang" action="{{URL::route('set-locale')}}">
+                            <select id="polyglot-language-options">
+                                <option id="en" value="en" @if(Lang::locale() == 'en') selected @endif>English</option>
+                                <option id="my" value="my" @if(Lang::locale() == 'my') selected @endif>Bahasa</option>
+                            </select>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
 @Stop

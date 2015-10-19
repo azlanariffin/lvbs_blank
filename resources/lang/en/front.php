@@ -4,6 +4,7 @@ return array(
     'login' => 'Login',
     'email' => 'Email',
     'password' => 'Password',
+    'remember_me' => 'Remember me',
     'lost_password' => 'Lost Password?',
     'connect_with' => 'Connect With',
     'not_a_member_sign_up' => 'Not a member? Sign Up Now!',

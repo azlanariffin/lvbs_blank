@@ -1,7 +1,7 @@
 <?php
 
 //GENERAL
-Route::post('/set-locale', ['as' => 'set-locale', 'uses' => 'LanguangeController@set_locale',]);
+Route::get('/set-locale', ['as' => 'set-locale', 'uses' => 'LanguangeController@set_locale',]);
 
 //FACEBOOK LOGIN
 Route::get('/fblogin', ['as' => 'fblogin', 'uses' => 'UserController@redirectToProvider',]);
@@ -25,6 +25,7 @@ Route::get('/reset-password', ['as' => 'reset-password', 'uses' => 'UserViewCont
 
 //MEMBER
 Route::get('/members/home', ['as' => 'home', 'uses' => 'MemberViewController@home',]);
+Route::get('/members/template', ['as' => 'template', 'uses' => 'MemberViewController@template',]);
 
 Route::get('/members/personal-info', ['as' => 'personal-info', 'uses' => 'MemberViewController@personal_info',]);
 

@@ -19,9 +19,9 @@ class MemberViewController extends Controller
         return view('member.home');
     }
 
-    public function personal_info()
+    public function template()
     {
-        return view('member.personal_info');
+        return view('member.home_temp');
     }
 
 }

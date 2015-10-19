@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
+use Redirect;
 
 
 class LanguangeController extends Controller
@@ -9,10 +10,10 @@ class LanguangeController extends Controller
 
     public function set_locale()
     {
-        $lang = $_POST['lang'];
+        $lang = $_GET['lang'];
         Session::put('lang', $lang);
 
-        return 'success';
+        return Redirect::back();
     }
 
 }

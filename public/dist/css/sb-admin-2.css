@@ -367,6 +367,7 @@ table.dataTable thead .sorting:after {
 .topmenuicon {
     display:none;
     float:right;
+    z-index:100;
 }
 
 @media(min-width:768px) {
@@ -489,6 +490,13 @@ table.dataTable thead .sorting:after {
     padding:0 200px 0 0;
 }
 
+@media(max-width:1100px) {
+    #chatbox_cont ul {
+        margin:0;
+        padding:0 50px 0 0;
+    }
+}
+
 #chatbox_cont ul li {
     list-style-type: none;
     display:block;
@@ -497,6 +505,56 @@ table.dataTable thead .sorting:after {
     margin-left:5px;
     margin-right:5px;
     margin-bottom:0px;
+}
+
+#chatbox_cont ul li.chatbox {
+    background-color:#CCC;
+    font-size:12px;
+}
+
+.openchatbox {
+    color:#666;
+    cursor:pointer;
+}
+
+.closechatbox {
+    color:#666;
+    cursor:pointer;
+}
+
+.chatbox .chatbox_pop {
+    position:absolute;
+    margin-top:-315px;
+    border:thin solid #CCC;
+    width:250px;
+}
+
+.chatbox .chatbox_pop .chatbox_header {
+    background-color:#CCC;
+    padding:10px;
+}
+
+.chatbox .chatbox_pop .chatbox_header .chatbox_name {
+    font-weight:bold;
+}
+
+.chatbox .chatbox_pop .chatbox_content {
+    height:240px;
+    padding:20px;
+    overflow-y: auto;
+    background-color:#FFFFFF;
+}
+
+.chatbox .chatbox_pop .chatbox_footer {
+    background-color:#CCC;
+}
+
+.chatbox .chatbox_min {
+    padding:10px;
+}
+
+.chatbox .chatbox_min .chatbox_name {
+    font-weight:bold;
 }
 
 #chatbox_cont ul li .panel-footer {
@@ -510,9 +568,7 @@ table.dataTable thead .sorting:after {
     padding:0px;
 }
 #chatbox_cont ul li div.chatarea {
-    height:250px;
-    padding:20px;
-    overflow-y:auto;
+
 }
 
 #chatbox_cont .chatarea ul {

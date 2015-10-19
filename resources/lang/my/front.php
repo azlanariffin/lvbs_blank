@@ -4,6 +4,7 @@ return array(
     'login' => 'Log Masuk',
     'email' => 'Email',
     'password' => 'Kata Laluan',
+    'remember_me' => 'Ingat saya',
     'lost_password' => 'Hilang Kata Laluan?',
     'connect_with' => 'Masuk Melalui',
     'not_a_member_sign_up' => 'Bukan ahli? Daftar Sekarang!',
