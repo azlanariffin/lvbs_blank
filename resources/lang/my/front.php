@@ -16,8 +16,6 @@ return array(
     'or' => 'atau',
     'signup_new_account'=>'Mendaftar Akaun Baru',
     'signup_using'=>'Mendaftar melalui',
-    'firstname' => 'Nama Anda',
-    'lastname' => 'Nama Keluarga',
     'email_address' => 'Alamat Email',
     'confirm_password' => 'Sahkan Kata Laluan',
     'already_a_member' => 'Sudah menjadi ahli?',

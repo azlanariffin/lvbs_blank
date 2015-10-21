@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>XXX - Bootstrap Admin Theme</title>
+    <title>{{env('SITE_NAME')}} | @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -20,10 +20,14 @@
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/sb-admin-2.css')}}" rel="stylesheet">
 
+    <link href="{{asset('plugin/polygot/css/polyglot-language-switcher.css')}}" rel="stylesheet" type="text/css">
+
     <!-- Custom Fonts -->
     <link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <script src="{{asset('bower_components/jquery/dist/jquery.js')}}"></script>
+
+    <script src="{{asset('plugin/polygot/js/jquery.polyglot.language.switcher.js')}}" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +35,18 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#polyglotLanguageSwitcher').polyglotLanguageSwitcher({
+                effect: 'fade',
+                testMode: true,
+                onChange: function(evt){
+                    $(location).attr('href','{{URL::route('set-locale')}}'+'?lang='+evt.selectedItem)
+                }
+            });
+        });
+    </script>
 
 </head>
 
@@ -103,6 +119,14 @@
                 <!-- /.dropdown-messages -->
             </li>
             <!-- /.dropdown -->
+            <div id="polyglotLanguageSwitcher" class="front_langchooser" style="margin-right:10px;">
+                <form id="updatelang" action="{{URL::route('set-locale')}}">
+                    <select id="polyglot-language-options">
+                        <option id="en" value="en" @if(Lang::locale() == 'en') selected @endif>English</option>
+                        <option id="my" value="my" @if(Lang::locale() == 'my') selected @endif>Bahasa</option>
+                    </select>
+                </form>
+            </div>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -359,25 +383,37 @@
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div id="chatarea_cont"></div>
+
     <div id="onlineuser">
+
         <div class="oluserlist chatbar-collapse collapse">
             <ul id="onlineUsers">
                 <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong>Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
                 <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong>Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
                 <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong>Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
             </ul>
@@ -385,7 +421,7 @@
     </div>
 
     <script>
-        $("#onlineuser li").click(function() {
-            $("#chatbox_cont ul").append('<li class="chatbox"><div class="chatbox_min">X</div></li>');
-         });
+        $( "#onlineUsers li" ).click(function() {
+            $( "#chatarea_cont" ).toggle();
+        });
     </script>

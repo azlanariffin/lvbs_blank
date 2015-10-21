@@ -108,6 +108,15 @@ return [
         'email' => 'Email',
         'password' => 'Password',
         'repassword' => 'Confirm Password',
+        'image' => 'Image',
+        'firstname'  => 'Firstname',
+        'lastname' => 'Lastname',
+        'gender' => 'Gender',
+        'address' => 'Address',
+        'city' => 'City',
+        'zipcode' => 'Zipcode',
+        'state' => 'State',
+        'country' => 'Country',
     ],
 
 ];

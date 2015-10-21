@@ -16,8 +16,6 @@ return array(
     'or' => 'or',
     'signup_new_account'=>'Sign Up New Account',
     'signup_using'=>'Sign Up using',
-    'firstname' => 'Firstname',
-    'lastname' => 'Lastname',
     'email_address' => 'Email Address',
     'confirm_password' => 'Confirm Password',
     'already_a_member' => 'Already a member?',

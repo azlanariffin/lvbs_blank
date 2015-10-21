@@ -384,17 +384,25 @@ table.dataTable thead .sorting:after {
 
 @media(max-width:768px) {
     #onlineuser {
+
+    }
+    #onlineuser .oluserlist {
         position:fixed;
-        display:block;
-        max-height: 340px;
-        overflow-y:auto !important;
-        width:100% !important;
+        height:100%;
         background-color:#f8f8f8;
+        overflow-y:auto !important;
+        padding-bottom:103px;
+        width:100% !important;
         z-index:100;
         border-bottom:thin solid #e7e7e7;
+        height:100%;
     }
     #onlineuser ul li .olname {
         display:block !important;
+    }
+    #onlineuser ul li .oltitle {
+        display:block !important;
+        float: left;
     }
     #onlineuser ul li .olindicator {
         position:static !important;
@@ -411,14 +419,27 @@ table.dataTable thead .sorting:after {
         float:right;
         font-size:20px;
     }
+    #chatarea_cont {
+        position: fixed;
+        width: 100% !important;
+        height: 100%;
+        background-color: #005983;
+        z-index: 3000;
+    }
 }
 
 @media(max-width:1100px) {
     #onlineuser {
-        width:50px;
+        width:60px;
         z-index:100;
     }
+    #onlineuser ul li {
+        padding-left:10px !important;
+    }
     #onlineuser ul li .olname {
+        display:none;
+    }
+    #onlineuser ul li .oltitle {
         display:none;
     }
     #onlineuser ul li .olindicator {
@@ -427,7 +448,7 @@ table.dataTable thead .sorting:after {
         margin-left:25px;
     }
     #page-wrapper {
-        margin: 51px 50px 0 250px;
+        margin: 51px 60px 0 250px;
     }
 }
 
@@ -457,16 +478,23 @@ table.dataTable thead .sorting:after {
 
 #onlineuser ul li img {
     float:left;
-    width:30px;
+    width:40px;
 }
 
 #onlineuser ul li .olname {
-    padding:5px 0 0 8px;
+    padding:3px 0 0 8px;
     float:left;
+    width:120px;
+}
+
+#onlineuser ul li .oltitle {
+    font-size:10px;
+    float:left;
+    width:120px;
 }
 
 #onlineuser ul li .olindicator {
-    padding-top:6px;
+    padding-top:12px;
     padding-right:10px;
     float:right;
     color:limegreen;
@@ -494,6 +522,9 @@ table.dataTable thead .sorting:after {
     #chatbox_cont ul {
         margin:0;
         padding:0 50px 0 0;
+    }
+    #chatarea_cont {
+        right:60px !important;
     }
 }
 
@@ -626,4 +657,14 @@ table.dataTable thead .sorting:after {
     border-color: transparent transparent transparent #2f6fad;
     position:relative;
     margin-left:196px;
+}
+
+#chatarea_cont {
+    position:fixed;
+    width:300px;
+    height:100%;
+    background-color:#005983;
+    right:200px;
+    z-index:3000;
+    display:none;
 }
