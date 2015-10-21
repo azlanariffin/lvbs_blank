@@ -40,3 +40,5 @@ Route::get('/getUsersOnline', 'ChatController@getUsersOnline');
 Route::get('/removeUsersOffline', 'ChatController@removeUsersOffline');
 Route::get('/getUserName', ['as' => 'getUserName', 'uses' => 'ChatController@getUserName']);
 Route::post('/postMessageToUser', ['as' => 'postMessageToUser', 'uses' => 'HomeController@postMessageToUser']);
+
+Route::get('/members/ui', ['as' => 'frontpage', 'uses' => 'UiController@frontpage']);

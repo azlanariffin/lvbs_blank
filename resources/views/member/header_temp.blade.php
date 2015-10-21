@@ -383,13 +383,79 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="chatarea_cont"></div>
+    <div id="chatarea_cont">
+
+        <div id="cb1" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 1</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+        <div id="cb2" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 2</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="bubble_area">
+                <ul>
+                    <li class="other">Assalamualaikum..</li>
+                    <li class="self">wa'salam bro....</li>
+                </ul>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+        <div id="cb3" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 3</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="buble_area_container">
+                <div class="bubble_area">
+                    <ul>
+                        <li class="other">Assalamualaikum..</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="self">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="self">wa'salam bro....</li>
+                        <li class="status">is typing a message...</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+    </div>
 
     <div id="onlineuser">
 
         <div class="oluserlist chatbar-collapse collapse">
             <ul id="onlineUsers">
-                <li>
+                <li class="chatuserlist" chatbox-id="1">
                     <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
                     <div class="olname">
@@ -398,7 +464,7 @@
                     </div>
                     <div style="clear:both;"></div>
                 </li>
-                <li>
+                <li class="chatuserlist" chatbox-id="2">
                     <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
                     <div class="olname">
@@ -407,11 +473,12 @@
                     </div>
                     <div style="clear:both;"></div>
                 </li>
-                <li>
+                <li class="chatuserlist" chatbox-id="3">
                     <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="newchatmsg btn btn-primary btn-circle btn-xs">5</div>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
                     <div class="olname">
-                        <strong>Khairul Azlan</strong>
+                        <strong class="text-primary">Khairul Azlan</strong>
                         <div class="oltitle">Executive</div>
                     </div>
                     <div style="clear:both;"></div>
@@ -422,6 +489,16 @@
 
     <script>
         $( "#onlineUsers li" ).click(function() {
-            $( "#chatarea_cont" ).toggle();
+            $( "#chatarea_cont" ).show();
         });
+        $( ".closechat" ).click(function() {
+            $( "#chatarea_cont" ).hide();
+        });
+
+        $(".chatuserlist").click(function() {
+            var chatboxid = $(this).attr('chatbox-id');
+            $( ".chatarea_body" ).hide();
+            $( "#cb"+chatboxid ).show();
+        });
+
     </script>

@@ -425,6 +425,19 @@ table.dataTable thead .sorting:after {
         height: 100%;
         background-color: #005983;
         z-index: 3000;
+        left:0px !important;
+        padding:0 10px 0 10px !important;
+    }
+    .chatarea_body {
+        position:fixed;
+        width:100% !important;
+        height:90%;
+        background-color:#FFFFFF;
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        right:0;
+    }
+    #chatarea_cont .chatarea_body .cinput_cont {
+        width:100% !important;
     }
 }
 
@@ -449,6 +462,9 @@ table.dataTable thead .sorting:after {
     }
     #page-wrapper {
         margin: 51px 60px 0 250px;
+    }
+    #chatarea_cont {
+        right:60px !important;
     }
 }
 
@@ -476,6 +492,36 @@ table.dataTable thead .sorting:after {
     font-weight:normal;
 }
 
+.cinfo_cont  {
+    background-color:#f8f8f8;
+    padding:10px;
+}
+
+.cinfo_cont img {
+    float:left;
+    width:40px;
+}
+
+.cinfo_cont .olname {
+    padding:3px 0 0 8px;
+    float:left;
+    width:120px;
+}
+
+.cinfo_cont .oltitle {
+    font-size:10px;
+    float:left;
+    width:120px;
+    color:#bababa;
+}
+
+.cinfo_cont .closechat {
+    float:right;
+    font-size:22px;
+    margin-top:6px;
+    cursor:pointer;
+}
+
 #onlineuser ul li img {
     float:left;
     width:40px;
@@ -491,6 +537,7 @@ table.dataTable thead .sorting:after {
     font-size:10px;
     float:left;
     width:120px;
+    color:#bababa;
 }
 
 #onlineuser ul li .olindicator {
@@ -522,9 +569,6 @@ table.dataTable thead .sorting:after {
     #chatbox_cont ul {
         margin:0;
         padding:0 50px 0 0;
-    }
-    #chatarea_cont {
-        right:60px !important;
     }
 }
 
@@ -663,8 +707,119 @@ table.dataTable thead .sorting:after {
     position:fixed;
     width:300px;
     height:100%;
-    background-color:#005983;
     right:200px;
-    z-index:3000;
+    z-index:200;
     display:none;
+    padding:10px;
+}
+
+.chatarea_body {
+    position:fixed;
+    width:280px;
+    height:90%;
+    background-color:#FFFFFF;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    display:none;
+}
+
+#chatarea_cont .chatarea_body .cinput_cont {
+    position:fixed;
+    width:280px;
+    bottom:10px;
+}
+
+#chatarea_cont .chatarea_body .cinput_cont .chatinput {
+    width:100%;
+    border-top:thin solid #CCC;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+}
+
+.buble_area_container {
+    height:100%;
+    padding-bottom:110px !important;
+    padding-right:-10px;
+}
+
+.bubble_area {
+    padding: 0 20px 0 20px;
+    font-size:12px;
+    overflow-y:auto;
+    height:100%;
+}
+
+.bubble_area ul {
+    margin:0;
+    padding:10px 0 0 0;
+}
+
+.bubble_area ul li {
+    margin-bottom:10px !important;
+    clear:both;
+}
+
+.bubble_area ul li.other {
+    position: relative;
+    padding: 15px;
+    color: #000;
+    background: #EEE;
+    border-radius: 10px;
+    list-style-type: none;
+    float:left;
+    width:80%;
+}
+
+/* creates triangle */
+.bubble_area ul li.other:after {
+    content: "";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0;
+    border-width: 5px 10px 5px 0;
+    border-style: solid;
+    border-color: transparent #EEE transparent transparent;
+}
+
+.bubble_area ul li.self {
+    position: relative;
+    padding: 15px;
+    margin: 0;
+    color: #000;
+    background: #337ab7;
+    border-radius: 10px;
+    list-style-type: none;
+    color:#FFF;
+    float:right;
+    width:80%;
+}
+
+/* creates triangle */
+.bubble_area ul li.self:after {
+    content: "";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    border-width: 5px 0 5px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #337ab7;
+}
+
+.bubble_area ul li.status {
+    list-style-type: none;
+    color:#bababa;
+}
+
+.newchatmsg {
+    font-size:9px;
+    width:15px;
+    height:15px;
+    padding:1px;
+    position:absolute;
+    margin-left:-42px;
+    margin-top:30px;
 }
