@@ -108,6 +108,15 @@ return [
         'email' => 'Email',
         'password' => 'Kata Laluan',
         'repassword' => 'Sahkan Kata Laluan',
+        'image' => 'Gambar',
+        'firstname' => 'Nama Anda',
+        'lastname' => 'Nama Keluarga',
+        'gender' => 'Jantina',
+        'address' => 'Alamat',
+        'city' => 'Bandar/Kawasan',
+        'zipcode' => 'Poskod',
+        'state' => 'Negeri',
+        'country' => 'Negara',
     ],
 
 ];

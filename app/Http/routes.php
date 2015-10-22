@@ -28,6 +28,8 @@ Route::get('/members/home', ['as' => 'home', 'uses' => 'MemberViewController@hom
 Route::get('/members/template', ['as' => 'template', 'uses' => 'MemberViewController@template',]);
 
 Route::get('/members/personal-info', ['as' => 'personal-info', 'uses' => 'MemberViewController@personal_info',]);
+Route::post('/members/upload-profile-pic', ['as' => 'upload-profile-pic', 'uses' => 'MemberController@upload_profile_pic',]);
+Route::post('/members/personal-info', ['as' => 'personal-info', 'uses' => 'MemberController@personal_info',]);
 
 
 
@@ -41,3 +43,4 @@ Route::post('/postMessageToUser', ['as' => 'postMessageToUser', 'uses' => 'HomeC
 
 // Mobile Chat Authentication
 Route::get('/storeDeviceID', 'ChatController@storeDeviceID');
+Route::get('/members/ui', ['as' => 'frontpage', 'uses' => 'UiController@frontpage']);

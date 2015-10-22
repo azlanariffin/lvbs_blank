@@ -1,5 +1,5 @@
 @extends('front.default')
-@section('title'){{trans('front.login')}} @Stop
+@section('title'){{trans('front.sign_up')}} @Stop
 @section('content')
 
     <div class="container">

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>XXX - Bootstrap Admin Theme</title>
+    <title>{{env('SITE_NAME')}} | @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -20,10 +20,14 @@
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/sb-admin-2.css')}}" rel="stylesheet">
 
+    <link href="{{asset('plugin/polygot/css/polyglot-language-switcher.css')}}" rel="stylesheet" type="text/css">
+
     <!-- Custom Fonts -->
     <link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <script src="{{asset('bower_components/jquery/dist/jquery.js')}}"></script>
+
+    <script src="{{asset('plugin/polygot/js/jquery.polyglot.language.switcher.js')}}" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +35,18 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#polyglotLanguageSwitcher').polyglotLanguageSwitcher({
+                effect: 'fade',
+                testMode: true,
+                onChange: function(evt){
+                    $(location).attr('href','{{URL::route('set-locale')}}'+'?lang='+evt.selectedItem)
+                }
+            });
+        });
+    </script>
 
 </head>
 
@@ -51,7 +67,35 @@
         </div>
         <!-- /.navbar-header -->
 
+
+
+        <div id="polyglotLanguageSwitcher" class="front_langchooser" style="margin-right:10px;">
+            <form id="updatelang" action="{{URL::route('set-locale')}}">
+                <select id="polyglot-language-options">
+                    <option id="en" value="en" @if(Lang::locale() == 'en') selected @endif>English</option>
+                    <option id="my" value="my" @if(Lang::locale() == 'my') selected @endif>Bahasa</option>
+                </select>
+            </form>
+        </div>
+
         <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <img class="topnavimg img-rounded" width="20" src="{{asset('profiles/'.Auth::user()->profile_pic)}}"/> Khairul Azlan  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="{{URL::route('personal-info')}}"><i class="fa fa-user fa-fw"></i> Personal Information</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -102,85 +146,7 @@
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-tasks">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 1</strong>
-                                    <span class="pull-right text-muted">40% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 2</strong>
-                                    <span class="pull-right text-muted">20% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 3</strong>
-                                    <span class="pull-right text-muted">60% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 4</strong>
-                                    <span class="pull-right text-muted">80% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Tasks</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-tasks -->
-            </li>
+
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -241,23 +207,7 @@
                 </ul>
                 <!-- /.dropdown-alerts -->
             </li>
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
+
         </ul>
 
         <!-- /.navbar-top-links -->
@@ -359,25 +309,104 @@
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div id="chatarea_cont">
+
+        <div id="cb1" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 1</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+        <div id="cb2" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 2</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="bubble_area">
+                <ul>
+                    <li class="other">Assalamualaikum..</li>
+                    <li class="self">wa'salam bro....</li>
+                </ul>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+        <div id="cb3" class="chatarea_body">
+            <div class="cinfo_cont">
+                <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                <div class="closechat"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="olname">
+                    <strong>Khairul Azlan 3</strong>
+                    <div class="oltitle">Executive</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="buble_area_container">
+                <div class="bubble_area">
+                    <ul>
+                        <li class="other">Assalamualaikum..</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="self">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="other">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque ante eget mi. Donec cursus nibh ultrices vulputate aliquet. Morbi nulla enim, molestie eu ullamcorper quis, placerat a mauris. Proin vel magna ullamcorper, vulputate leo eu, egestas odio. Vivamus erat</li>
+                        <li class="self">wa'salam bro....</li>
+                        <li class="status">is typing a message...</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cinput_cont">
+                <textarea class="chatinput" rows="2" placeholder="Enter your text here..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
     <div id="onlineuser">
+
         <div class="oluserlist chatbar-collapse collapse">
             <ul id="onlineUsers">
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                <li class="chatuserlist" chatbox-id="1">
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong>Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                <li class="chatuserlist" chatbox-id="2">
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong>Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
-                <li>
-                    <img class="img-rounded" src="{{asset('profiles/no_img.jpg')}}"/>
-                    <div class="olname">Khairul Azlan</div>
+                <li class="chatuserlist" chatbox-id="3">
+                    <img class="img-rounded chatimg" src="{{asset('profiles/no_img.jpg')}}"/>
+                    <div class="newchatmsg btn btn-primary btn-circle btn-xs">5</div>
                     <div class="olindicator"><span class="fa fa-circle"></span></div>
+                    <div class="olname">
+                        <strong class="text-primary">Khairul Azlan</strong>
+                        <div class="oltitle">Executive</div>
+                    </div>
                     <div style="clear:both;"></div>
                 </li>
             </ul>
@@ -385,7 +414,17 @@
     </div>
 
     <script>
-        $("#onlineuser li").click(function() {
-            $("#chatbox_cont ul").append('<li class="chatbox"><div class="chatbox_min">X</div></li>');
-         });
+        $( "#onlineUsers li" ).click(function() {
+            $( "#chatarea_cont" ).show();
+        });
+        $( ".closechat" ).click(function() {
+            $( "#chatarea_cont" ).hide();
+        });
+
+        $(".chatuserlist").click(function() {
+            var chatboxid = $(this).attr('chatbox-id');
+            $( ".chatarea_body" ).hide();
+            $( "#cb"+chatboxid ).show();
+        });
+
     </script>

@@ -1,105 +1,136 @@
-@extends('member.default')
+@extends('member.default_temp')
 
 @section('title'){{trans('member.personal_info')}} @Stop
 @section('homeclass')nav-active @Stop
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <section class="panel">
-            <header class="panel-heading">
-                <h2 class="panel-title">{{trans('member.personal_info')}}</h2>
-                <p class="panel-subtitle">Update your personal information</p>
-            </header>
 
-            <div class="panel-body">
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
 
+            <div class="col-lg-12">
+                <h1 class="page-header">{{trans('member.personal_info')}}</h1>
 
-                <div class="form-group">
-                    <label class="col-md-3 control-label text-right" for="inputDefault">Profile Picture</label>
-                    <div class="col-md-6">
-                        <div class="media-left">
-                            <img src="../profiles/no_img.jpg" width="100" alt="person">
-                        </div>
-                        <div class="media-body media-middle">
+                @if (isset($message))
+                    <div class="alert alert-success">
+                        <ul>
+                                <li>{{ $message }}</li>
+                        </ul>
+                    </div>
+                @endif
 
-                            {!! Form::open(array('url'=>'members/uploadprofile','method'=>'POST', 'files'=>true, 'id'=>'profileuploadform')) !!}
-                            <div class="control-group">
-                                <div class="controls">
-                                    {!! Form::file('image', array('id'=>'uploadfile', 'class'=>'filestyle')) !!}
-                                    <small class="text-muted">Your image will be resize & crop to 100x100px</small>
-                                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        {!! Form::open(array('url'=>'members/upload-profile-pic','method'=>'POST', 'files'=>true, 'class'=>'form-horizontal form-bordered')) !!}
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault"><img class="img-rounded" src="@if(Auth::user()->profile_pic){{asset('profiles/'.Auth::user()->profile_pic)}} @else {{asset('profiles/no_img.jpg')}} @endif"/></label>
+                            <div class="col-md-4">
+                                <label class="control-label">{{trans('member.profile_picture')}}</label><br><br>
+                                {!! Form::file('image', '', array('class'=>'form-control','placeholder'=>trans('front.lastname'))) !!}<br>
+                                @if(Auth::user()->profile_pic)
+                                    {!! Form::submit(trans('member.replace_photo'), array('class'=>'btn btn-primary btn-block')) !!}
+                                @else
+                                {!! Form::submit(trans('member.upload_photo'), array('class'=>'btn btn-primary btn-block')) !!}
+                                @endif
                             </div>
-                            {!! Form::close() !!}
                         </div>
+
+                        {!! Form::close() !!}
                     </div>
                 </div>
 
-                <hr>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                <form action="{{ URL::route('home') }}" class="form-horizontal form-bordered" method="POST">
-                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <div class="panel panel-default">
+                    {!! Form::open(array('url'=>'members/personal-info','method'=>'POST', 'class'=>'form-horizontal form-bordered')) !!}
+                    <div class="panel-body">
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">First Name</label>
-                        <div class="col-md-6">
-                            <input type="text" name="firstname" class="form-control" id="inputDefault" value="{{ Auth::user()->firstname }}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.firstname')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('firstname', old('firstname'), array('class'=>'form-control','placeholder'=> Auth::user()->firstname )) !!}
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.lastname')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('lastname', old('lastname'), array('class'=>'form-control')) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.gender')}}</label>
+                            <div class="col-md-6">
+                                <label class="control-label">{!! Form::radio('gender', 'male', (Input::old('gender') == 'male')) !!} {{trans('member.male')}}</label> &nbsp;&nbsp;
+                                <label class="control-label">{!! Form::radio('gender', 'female', (Input::old('gender') == 'female')) !!} {{trans('member.female')}}</label>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">Last Name</label>
-                        <div class="col-md-6">
-                            <input type="text" name="lastname" class="form-control" id="inputDefault" value="{{ Auth::user()->lastname }}">
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.address')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('address', old('address'), array('class'=>'form-control')) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">Address</label>
-                        <div class="col-md-6">
-                            <input type="text" name="address" class="form-control" id="inputDefault" value="{{ Auth::user()->address }}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.city')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('city', old('city'), array('class'=>'form-control')) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">City</label>
-                        <div class="col-md-6">
-                            <input type="text" name="city" class="form-control" id="inputDefault" value="{{ Auth::user()->city }}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.zipcode')}}</label>
+                            <div class="col-md-3">
+                                {!! Form::text('zipcode', old('zipcode'), array('class'=>'form-control')) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">Zipcode</label>
-                        <div class="col-md-6">
-                            <input type="text" name="zipcode" class="form-control" id="inputDefault" value="{{ Auth::user()->zipcode }}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.state')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('state', old('state'), array('class'=>'form-control')) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault">State</label>
-                        <div class="col-md-6">
-                            <input type="text" name="state" class="form-control" id="inputDefault" value="{{ Auth::user()->state }}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault">{{trans('member.country')}}</label>
+                            <div class="col-md-6">
+                                {!! Form::text('country', old('country'), array('class'=>'form-control')) !!}
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="inputDefault"></label>
-                        <div class="col-md-6">
-                            <input class="btn btn-primary hidden-xs" type="submit" value="Save Changes">
-                            <input class="btn btn-primary btn-block btn-lg visible-xs mt-lg" type="submit" value="Save Changes">
-
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputDefault"></label>
+                            <div class="col-md-4">
+                                {!! Form::submit(trans('member.save_update'), array('class'=>'btn btn-primary btn-block')) !!}
+                            </div>
                         </div>
+
                     </div>
-
-
-                </form>
+                    {!! Form::close() !!}
+                </div>
             </div>
-        </section>
 
-
-
+        </div>
     </div>
 </div>
-@Stop
 
+@Stop
