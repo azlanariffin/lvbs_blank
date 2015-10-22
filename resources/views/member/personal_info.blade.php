@@ -1,4 +1,4 @@
-@extends('member.default_temp')
+@extends('member.default')
 
 @section('title'){{trans('member.personal_info')}} @Stop
 @section('homeclass')nav-active @Stop

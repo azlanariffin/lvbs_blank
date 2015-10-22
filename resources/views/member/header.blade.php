@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>{{env('SITE_NAME')}} | @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -20,10 +20,14 @@
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/sb-admin-2.css')}}" rel="stylesheet">
 
+    <link href="{{asset('plugin/polygot/css/polyglot-language-switcher.css')}}" rel="stylesheet" type="text/css">
+
     <!-- Custom Fonts -->
     <link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <script src="{{asset('bower_components/jquery/dist/jquery.js')}}"></script>
+
+    <script src="{{asset('plugin/polygot/js/jquery.polyglot.language.switcher.js')}}" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +35,18 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#polyglotLanguageSwitcher').polyglotLanguageSwitcher({
+                effect: 'fade',
+                testMode: true,
+                onChange: function(evt){
+                    $(location).attr('href','{{URL::route('set-locale')}}'+'?lang='+evt.selectedItem)
+                }
+            });
+        });
+    </script>
 
 </head>
 
@@ -51,7 +67,35 @@
         </div>
         <!-- /.navbar-header -->
 
+
+
+        <div id="polyglotLanguageSwitcher" class="front_langchooser" style="margin-right:10px;">
+            <form id="updatelang" action="{{URL::route('set-locale')}}">
+                <select id="polyglot-language-options">
+                    <option id="en" value="en" @if(Lang::locale() == 'en') selected @endif>English</option>
+                    <option id="my" value="my" @if(Lang::locale() == 'my') selected @endif>Bahasa</option>
+                </select>
+            </form>
+        </div>
+
         <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <img class="topnavimg img-rounded" width="20" src="{{asset('profiles/'.Auth::user()->profile_pic)}}"/> Khairul Azlan  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="{{URL::route('personal-info')}}"><i class="fa fa-user fa-fw"></i> Personal Information</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -102,85 +146,7 @@
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-tasks">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 1</strong>
-                                    <span class="pull-right text-muted">40% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 2</strong>
-                                    <span class="pull-right text-muted">20% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 3</strong>
-                                    <span class="pull-right text-muted">60% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 4</strong>
-                                    <span class="pull-right text-muted">80% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Tasks</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-tasks -->
-            </li>
+
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -241,23 +207,7 @@
                 </ul>
                 <!-- /.dropdown-alerts -->
             </li>
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
+
         </ul>
 
         <!-- /.navbar-top-links -->
@@ -340,11 +290,11 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active" href="blank.html">Blank Page</a>
+                                <a href="blank.html">Blank Page</a>
                             </li>
                             <li>
                                 <a href="login.html">Login Page</a>
@@ -359,349 +309,13 @@
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div id="chatarea_cont">
+    </div>
+
     <div id="onlineuser">
+
         <div class="oluserlist chatbar-collapse collapse">
             <ul id="onlineUsers">
             </ul>
         </div>
     </div>
-
-<script>
-    var conn;
-
-    var userName = "{{ Auth::user()->name }}";
-    var userId = "{{ Auth::user()->id }}";
-    var token = $("meta[name='csrf-token']").attr("content");
-    var port = "9090";
-    var uri = "{{ explode(':', str_replace('http://', '', str_replace('https://', '', App::make('url')->to('/'))))[0] }}";
-    port = port.length == 0 ? '9090' : port;
-
-    function setUserOnline(userid) {
-        $.ajax({
-            type: "GET",
-            url: "{{ url('setUserOnline') }}",
-            data: {user_id: userid, _token: token},
-            dataType: "json",
-            success: function (data) {
-            }
-        });
-    }
-
-    function setUserChatId(userid, chatid) {
-        $.ajax({
-            type: "GET",
-            url: "{{ url('setUserChatId') }}",
-            data: {user_id: userid, chat_id: chatid, _token: token},
-            dataType: "json",
-            success: function (data) {
-            }
-        });
-    }       
-
-    function getUsersOnline() {
-        $.ajax({
-            type: "GET",
-            url: "{{ url('getUsersOnline') }}",
-            data: {_token: token},
-            dataType: "json",
-            success: function (data) {
-                var validation_failed = data.validation_failed;
-                var rtnVal = data.return_value;
-
-                if (validation_failed == 0) {
-                    if (rtnVal != "") {
-
-                        if (rtnVal.indexOf(";") > -1) {
-                            var arrValues = rtnVal.split(";");
-
-                            for (i = 0; i < arrValues.length; i++) {
-                                
-                                if (userId != arrValues[i].split("|")[1]) {
-                                    var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
-
-                                    if (elemUsersOnline.html() == undefined) {
-                                        $("#onlineUsers").append("<li id=\"userid-" + arrValues[i].split("|")[1] + "\" onclick=\"createChatTab(" + arrValues[i].split("|")[1] + ", '" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "')\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((arrValues[i].split("|")[1] == 1) ? "Admin" : arrValues[i].split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
-                                    }
-                                }
-                            }
-                        }
-                        else {
-                            if (userId != rtnVal.split("|")[1]) {
-                                var elemUsersOnline = $("#onlineUsers").find("#userid-" + rtnVal.split("|")[1]);
-
-                                if (elemUsersOnline.html() == undefined) {
-                                    $("#onlineUsers").append("<li id=\"userid-" + rtnVal.split("|")[1] + "\" onclick=\"createChatTab(" + rtnVal.split("|")[1] + ", '" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "')\"><img class=\"img-rounded\" src=\"{{asset('profiles/no_img.jpg')}}\"/><div class=\"olname\">" + ((rtnVal.split("|")[1] == 1) ? "Admin" : rtnVal.split("|")[0]) + "</div><div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div><div style=\"clear:both;\"></div></li>");
-                                }
-                            }
-                        }
-                        
-                    }
-                    refreshUsersOnline();
-                }
-            }
-        });
-    }
-
-    function removeUsersOffline(chatid) {
-        $.ajax({
-            type: "GET",
-            url: "{{ url('removeUsersOffline') }}",
-            data: {chat_id: chatid, _token: token},
-            dataType: "json",
-            success: function (data) {
-                var validation_failed = data.validation_failed;
-                var rtnVal = data.return_value;
-
-                if (validation_failed == 0) {
-                    console.log("users offline");
-                            
-                    var elemUsersOffline = $("#onlineUsers").find("#userid-" + rtnVal);
-
-                    if (elemUsersOffline.html() != undefined) {
-                        $("#userid-" + rtnVal).remove();
-                    }
-                }
-                refreshUsersOnline();
-            }
-        });
-    }
-
-    function refreshUsersOnline() {
-        $("#onlineUsers").scrollTop($("#onlineUsers")[0].scrollHeight);
-    }
-
-    function createChatTab(id, uname) 
-    {
-        var elemChatTabs = $("#chatbox_cont ul").find("#usertab" + id);
-
-        if (elemChatTabs.html() == undefined)
-        {
-            var elemToCreate = "<li id=\"usertab" + id + "\">";
-            elemToCreate += "<div class=\"panel panel-default\">";
-            elemToCreate += "<div class=\"panel-heading\">";
-            elemToCreate += ((id == 1) ? "Admin" : uname);
-            elemToCreate += "<div class=\"panel-control pull-right\">";
-            elemToCreate += "<a data-toggle=\"collapse\" data-target=\"#chat" + id + "\" href=\"#chat" + id + "\"><i class=\"fa fa-chevron-down\"></i></a>";
-            elemToCreate += "</div>";
-            elemToCreate += "</div>";
-            elemToCreate += "<div id=\"chat" + id + "\" class=\"panel-body panel-collapse collapse in\">";
-            elemToCreate += "<div class=\"chatarea\">";
-            elemToCreate += "<ul>";
-            elemToCreate += "</ul>";
-            elemToCreate += "</div>";
-            elemToCreate += "<div>";
-            elemToCreate += "<input id=\"chatInput" + id + "\" class=\"chatinput\" onkeyup=\"keypress(event, " +  id+ ")\">";
-            elemToCreate += "</div>";
-            elemToCreate += "</div>";
-            elemToCreate += "</div>";
-            elemToCreate += "</li>"
-
-            $("#chatbox_cont ul").append(elemToCreate);
-        }
-
-    }
-
-    function addMessageToChatBox(usrid, tabid, message)
-    {
-        if (message.indexOf("typing") > -1)
-        {
-            if (tabid == 0)
-            {
-                $("#typestatus" + tabid).html(message);
-            }
-            else
-            {
-                if (tabid == userId)
-                {
-                    $("#typestatus" + usrid).html(message);
-                }
-            }
-        }
-
-        else if (message.indexOf("none") > -1)
-        {
-            if (tabid == 0)
-            {
-                $("#typestatus" + tabid).html("");
-            }
-            else
-            {
-                $("#typestatus" + usrid).html("");
-            }
-        }
-        else if (message.indexOf("Connection established!") > -1)
-        {
-            getUsersOnline();
-
-            //$("#chatMessages" + tabid).append("<li>" + message + "</li>");
-            //$("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
-        }
-        else if (message.indexOf("is online") > -1)
-        {
-            getUsersOnline();
-
-            /*if (usrid == 1 && userId != usrid)
-            {
-                $("#chatMessages" + tabid).append("<li>Admin is online</li>");
-                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
-            }
-            else
-            {
-                getUsersOnline();
-                $("#chatMessages" + tabid).append("<li>" + ((usrid == 1) ? "Admin is online" : message) + "</li>");
-                $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
-            }*/
-        }
-        else
-        {
-            if (message.indexOf("Me:") > -1)
-            {
-                $("#chat" + tabid + " .chatarea ul").append("<li class=\"self\"><div class=\"chattri\"></div>" + message + "</li>");
-                $("#chat" + tabid + " .chatarea").animate({ scrollTop: $("#chat" + tabid + " .chatarea ul li:last").offset().top }, 1000);
-            }
-            else
-            {
-                // If from user to user
-                if (userId == tabid)
-                {
-                    createChatTab(usrid, message.split(":")[0]);
-                    $("#chat" + usrid + " .chatarea ul").append("<li class=\"other\"><div class=\"chattri\"></div>" + ((usrid == 1) ? "Admin:" + message.split(":")[1] : message) + "</li>");
-                    $("#chat" + usrid + " .chatarea").animate({ scrollTop: $("#chat" + usrid + " .chatarea ul li:last").offset().top }, 1000);
-                }
-            }
-        }
-    }
-
-    function keypress(e, id)
-    {
-        if (e.keyCode == 13)
-        {
-            var message = $("#chatInput" + id).val();
-
-            if (id == 0)
-            {
-                conn.send(userId + ";" + id + ";" + userName + ": " + message);
-                addMessageToChatBox(userId, id, "Me: " + message);
-            }
-            else
-            {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ url('getUserName') }}",
-                    data: {user_id: id, _token: token},
-                    dataType: "json",
-                    success: function (data) {
-                        var validation_failed = data.validation_failed;
-                        var rtnVal = data.return_value;
-                        var is_active = data.is_active;
-
-                        if (validation_failed == 0) 
-                        {
-                            if (is_active == 1)
-                            {
-                                // If user is online then do below
-                                conn.send(userId + ";" + id + ";" + userName + ": " + message);
-                                addMessageToChatBox(userId, id, "Me: " + message);
-                            }
-                            else
-                            {
-                                //If user is offline then do below
-                                $.ajax({
-                                    type: "POST",
-                                    url: "{{ url('postMessageToUser') }}",
-                                    data: {from_id: userId, to_id: id, message: message, _token: token},
-                                    dataType: "json",
-                                    success: function (data) {
-                                    }
-                                });
-                                addMessageToChatBox(userId, id, "Me: " + message);
-                            }
-                        }
-                    }
-                });
-            }
-
-            $("#chatInput" + id).val("");
-            conn.send(userId + ";" + id + ";none");
-        }
-        else
-        {
-            //conn.send(userId + ";" + id + ";" + ((userId == 1) ? "Admin is typing ..." : userName + " is typing ..."));
-        }
-    }    
-
-
-
-    $(document).ready(function() {
-        conn = new WebSocket('ws://' + uri + ':' + port);
-
-        conn.onerror = function (event) {
-        }
-
-        conn.onclose = function (event)
-        {
-            var reason;
-
-            if (event.code == 1000)
-                reason = "Normal closure, meaning that the purpose for which the connection was established has been fulfilled.";
-            else if (event.code == 1001)
-                reason = "An endpoint is \"going away\", such as a server going down or a browser having navigated away from a page.";
-            else if (event.code == 1002)
-                reason = "An endpoint is terminating the connection due to a protocol error";
-            else if (event.code == 1003)
-                reason = "An endpoint is terminating the connection because it has received a type of data it cannot accept (e.g., an endpoint that understands only text data MAY send this if it receives a binary message).";
-            else if (event.code == 1004)
-                reason = "Reserved. The specific meaning might be defined in the future.";
-            else if (event.code == 1005)
-                reason = "No status code was actually present.";
-            else if (event.code == 1006)
-                reason = "Abnormal error, e.g., without sending or receiving a Close control frame";
-            else if (event.code == 1007)
-                reason = "An endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [http://tools.ietf.org/html/rfc3629] data within a text message).";
-            else if (event.code == 1008)
-                reason = "An endpoint is terminating the connection because it has received a message that \"violates its policy\". This reason is given either if there is no other sutible reason, or if there is a need to hide specific details about the policy.";
-            else if (event.code == 1009)
-                reason = "An endpoint is terminating the connection because it has received a message that is too big for it to process.";
-            else if (event.code == 1010) // Note that this status code is not used by the server, because it can fail the WebSocket handshake instead.
-                reason = "An endpoint (client) is terminating the connection because it has expected the server to negotiate one or more extension, but the server didn't return them in the response message of the WebSocket handshake. <br /> Specifically, the extensions that are needed are: " + event.reason;
-            else if (event.code == 1011)
-                reason = "A server is terminating the connection because it encountered an unexpected condition that prevented it from fulfilling the request.";
-            else if (event.code == 1015)
-                reason = "The connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can't be verified).";
-            else
-                reason = "Unknown reason";
-        };
-
-        conn.onopen = function (e)
-        {
-            setUserOnline(userId);
-            addMessageToChatBox(userId, 0, "Connection established!");
-            conn.send(userId + ";" + "0;" + userName + " is online");
-        };
-
-        conn.onmessage = function (e)
-        {
-            if (e.data.indexOf("user_connected") > -1) {
-                var r_conn_chatid = e.data.split(";")[0];
-                var r_userid = e.data.split(";")[2];
-
-                if (r_conn_chatid == r_userid) {
-                    setUserChatId(userId, r_conn_chatid);
-                }
-            }
-            else if (e.data.indexOf("user_disconnected") > -1) {
-                var r_disconn_chatid = e.data.split(";")[0];
-                var r_userid = e.data.split(";")[2];
-
-                removeUsersOffline(r_disconn_chatid);
-            }
-            else {
-                var uid = e.data.split(";")[0];
-                var tabid = e.data.split(";")[1];
-                var themsg = e.data.split(";")[2];
-
-                addMessageToChatBox(uid, tabid, themsg);
-            }
-        };
-    });    
-</script>
