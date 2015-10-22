@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.lastname')}}</label>
                             <div class="col-md-6">
-                                {!! Form::text('lastname', old('lastname'), array('class'=>'form-control')) !!}
+                                {!! Form::text('lastname', old('lastname'), array('class'=>'form-control', 'placeholder'=>Auth::user()->lastname)) !!}
                             </div>
                         </div>
 
@@ -85,35 +85,35 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.address')}}</label>
                             <div class="col-md-6">
-                                {!! Form::text('address', old('address'), array('class'=>'form-control')) !!}
+                                {!! Form::text('address', old('address'), array('class'=>'form-control', 'placeholder'=>Auth::user()->address )) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.city')}}</label>
                             <div class="col-md-6">
-                                {!! Form::text('city', old('city'), array('class'=>'form-control')) !!}
+                                {!! Form::text('city', old('city'), array('class'=>'form-control', 'placeholder'=>Auth::user()->city)) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.zipcode')}}</label>
                             <div class="col-md-3">
-                                {!! Form::text('zipcode', old('zipcode'), array('class'=>'form-control')) !!}
+                                {!! Form::text('zipcode', old('zipcode'), array('class'=>'form-control', 'placeholder'=>Auth::user()->zipcode)) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.state')}}</label>
                             <div class="col-md-6">
-                                {!! Form::text('state', old('state'), array('class'=>'form-control')) !!}
+                                {!! Form::text('state', old('state'), array('class'=>'form-control', 'placeholder'=>Auth::user()->state )) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputDefault">{{trans('member.country')}}</label>
                             <div class="col-md-6">
-                                {!! Form::text('country', old('country'), array('class'=>'form-control')) !!}
+                                {!! Form::text('country', old('country'), array('class'=>'form-control', 'placeholder'=>Auth::user()->country_code )) !!}
                             </div>
                         </div>
 

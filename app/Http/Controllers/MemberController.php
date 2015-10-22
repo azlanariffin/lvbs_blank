@@ -60,14 +60,14 @@ class MemberController extends Controller
         $validator = Validator::make(Input::all(), $rules);
         //Validation End
 
-        $firstname = Input::file('firstname');
-        $lastname = Input::file('lastname');
-        $gender = Input::file('gender');
-        $address = Input::file('address');
-        $city = Input::file('city');
-        $zipcode = Input::file('zipcode');
-        $state = Input::file('state');
-        $country = Input::file('country');
+        $firstname = Input::get('firstname');
+        $lastname = Input::get('lastname');
+        $gender = Input::get('gender');
+        $address = Input::get('address');
+        $city = Input::get('city');
+        $zipcode = Input::get('zipcode');
+        $state = Input::get('state');
+        $country = Input::get('country');
 
         if ($validator->fails()) {
 
