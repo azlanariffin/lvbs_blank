@@ -35,8 +35,8 @@
       <file leaf-file-name="sb-admin-2.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/dist/css/sb-admin-2.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.518518">
-              <caret line="822" column="19" selection-start-line="822" selection-start-column="19" selection-end-line="822" selection-end-column="19" />
+            <state vertical-scroll-proportion="-11.518518">
+              <caret line="680" column="17" selection-start-line="680" selection-start-column="16" selection-end-line="680" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -45,8 +45,8 @@
       <file leaf-file-name="MemberController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MemberController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.208334">
-              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="87" selection-end-column="43" />
+            <state vertical-scroll-proportion="-36.833332">
+              <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
               <folding>
                 <element signature="e#40#49#0#PHP" expanded="true" />
               </folding>
@@ -54,20 +54,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header_temp.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="header_temp.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/member/header_temp.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.708333">
-              <caret line="477" column="79" selection-start-line="477" selection-start-column="79" selection-end-line="477" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.38210228">
+              <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="personal_info.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="personal_info.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/member/personal_info.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1079545">
+            <state vertical-scroll-proportion="32.5">
               <caret line="7" column="21" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="21" />
               <folding />
             </state>
@@ -915,36 +915,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/dist/css/sb-admin-2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.518518">
-          <caret line="822" column="19" selection-start-line="822" selection-start-column="19" selection-end-line="822" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MemberController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.208334">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="87" selection-end-column="43" />
+        <state vertical-scroll-proportion="-36.833332">
+          <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
           <folding>
             <element signature="e#40#49#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/member/header_temp.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/member/personal_info.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.708333">
-          <caret line="477" column="79" selection-start-line="477" selection-start-column="79" selection-end-line="477" selection-end-column="79" />
+        <state vertical-scroll-proportion="32.5">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/member/personal_info.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/dist/css/sb-admin-2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1079545">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="21" />
+        <state vertical-scroll-proportion="-11.518518">
+          <caret line="680" column="17" selection-start-line="680" selection-start-column="16" selection-end-line="680" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/member/header_temp.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38210228">
+          <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
           <folding />
         </state>
       </provider>

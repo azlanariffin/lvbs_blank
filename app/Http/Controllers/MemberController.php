@@ -88,7 +88,7 @@ class MemberController extends Controller
             $user->country_code = $country;
             $user->save();
 
-            return Redirect::to('members/personal-info')->with('message', trans('member.personal_information_updated'));
+            return Redirect::to('members/personal-info')->with('message', 'shdsaj haskdjahsdkjahsdas');
 
         }
     }
