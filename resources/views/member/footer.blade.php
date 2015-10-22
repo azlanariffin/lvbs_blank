@@ -157,12 +157,13 @@
             elemToCreate += "</div>";
             elemToCreate += "<div style=\"clear:both;\"></div>";
             elemToCreate += "</div>";
+            elemToCreate += "<div class=\"buble_area_container\">";
             elemToCreate += "<div class=\"bubble_area\">";
             elemToCreate += "<ul>";
-            //elemToCreate += "<li class=\"other\">Assalamualaikum..</li>";
-            //elemToCreate += "<li class=\"self\">wa'salam bro....</li>";
+            elemToCreate += "<li class=\"status\">is typing a message...</li>";
             elemToCreate += "</ul>";
             elemToCreate += "</div>";
+            elemToCreate += "</div>"
             elemToCreate += "<div class=\"cinput_cont\">";
             elemToCreate += "<textarea id=\"chatInput" + id + "\" class=\"chatinput\" rows=\"2\" onkeyup=\"keypress(event, " + id + ")\" placeholder=\"Enter your text here...\"></textarea>";
             elemToCreate += "</div>";
@@ -418,6 +419,7 @@
         };
     });
     </script>
+
 </body>
 
 </html>
