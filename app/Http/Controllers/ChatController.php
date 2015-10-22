@@ -10,6 +10,7 @@ use Auth;
 use Input;
 use App\User;
 use Response;
+use App\Inbox;
 
 class ChatController extends Controller
 {
@@ -30,12 +31,12 @@ class ChatController extends Controller
     }
 
     public function getUsersOnline() {
-      $users = User::select('id', 'name')->where('active', '=', 1)->orderBy('id')->get();
+      $users = User::select('id', 'firstname', 'lastname', 'profile_pic')->where('active', '=', 1)->orderBy('id')->get();
 
       $rtnVal = "";
 
       foreach ($users as $user) {
-        $rtnVal .= $user->name . "|" . $user->id . ";";
+        $rtnVal .= $user->firstname . " " . $user->lastname . "|" . $user->id . "|" . $user->profile_pic . ";";
       }
 
       $rtnVal = rtrim($rtnVal, ";");
