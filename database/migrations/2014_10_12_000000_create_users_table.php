@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('alias', 100);
             $table->boolean('alias_change');
+            $table->string('device_id', 50);
             $table->rememberToken();
             $table->timestamps();
         });
