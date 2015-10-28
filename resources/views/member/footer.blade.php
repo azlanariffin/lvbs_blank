@@ -283,29 +283,24 @@
                     
                     $("#chatarea_cont > div").each(function () {
                         var chatBox = $(this);
-                        alert(chatBox.attr("id"));
-                        /*var from_id = "";
-                        
-                        if (chatBox.attr("style") != "display: block;") {
-                            from_id = chatBox.attr("id").replace("cb", "");
-                            
-                            if (from_id != usrid) {
-                                var ctrNo = 1;
+
+                        var from_id = chatBox.attr("id").replace("cb", "");
+
+                        if (from_id == usrid) {
+                            if (chatBox.css("display") == "none") {
                                 var findElem = $("#userid-" + usrid).find("#ctr-" + usrid);
 
                                 if (findElem.html() == undefined) {
-                                    $("<div id=\"ctr-" + usrid + "\" class=\"newchatmsg btn btn-primary btn-circle btn-xs\">" + ctrNo + "</div>").insertAfter("#userid-" + usrid + " > img");
-                                    alert("x");
-                                } 
+                                    $("<div id=\"ctr-" + usrid + "\" class=\"newchatmsg btn btn-primary btn-circle btn-xs\">1</div>").insertAfter("#userid-" + usrid + " > img");
+                                }
                                 else {
                                     var currCtr = $("#ctr-" + usrid).html();
                                     var newCtr = (parseInt(currCtr)) + 1;
 
                                     $("#ctr-" + usrid).html(newCtr);
-                                    alert("x1");
                                 }
                             }
-                        }*/
+                        }
                     });
                 }
             }
