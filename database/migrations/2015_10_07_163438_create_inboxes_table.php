@@ -19,6 +19,7 @@ class CreateInboxesTable extends Migration {
 			$table->string('message');
 			$table->integer('from_id');
 			$table->integer('to_id');
+			$table->integer('group_id');
 			$table->timestamps();
 		});
 	}
