@@ -40,6 +40,7 @@ Route::get('/getUsersOnline', 'ChatController@getUsersOnline');
 Route::get('/removeUsersOffline', 'ChatController@removeUsersOffline');
 Route::get('/getUserName', ['as' => 'getUserName', 'uses' => 'ChatController@getUserName']);
 Route::post('/postMessageToUser', ['as' => 'postMessageToUser', 'uses' => 'ChatController@postMessageToUser']);
+Route::post('/setReadMsgs', 'ChatController@setReadMsgs');
 
 // Mobile Chat Authentication
 Route::get('/storeDeviceID', 'ChatController@storeDeviceID');

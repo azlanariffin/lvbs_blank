@@ -87,6 +87,23 @@ class ChatController extends Controller
       $inbox->read = 0;
       $inbox->save();
     }
+    
+    public function setReadMsgs() {
+        $from_id = Input::get("from_id");
+        $to_id = Input::get("to_id");
+        
+        $inbox_select = Inbox::select('id')->where('from_id', '=', $from_id)->where('to_id', '=', $to_id)->get();
+        
+        foreach($inbox_select as $inbox_msg) {
+            $inbox = Inbox::find($inbox_msg->id);
+            $inbox->read = 1;
+            $inbox->save();
+        }
+        
+        return Response::json(array(
+            'validation_failed' => 0
+        ));
+    }
 
     public function storeDeviceID() {
       $uname = Input::get("uname");

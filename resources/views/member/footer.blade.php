@@ -1,17 +1,14 @@
+<!-- Bootstrap Core JavaScript -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Chat JavaScript -->
-    <script>
-
+<!-- Chat JavaScript -->
+<script>
     var conn;
 
     var userName = "{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}";
@@ -25,10 +22,12 @@
         $.ajax({
             type: "GET",
             url: "{{ url('setUserOnline') }}",
-            data: {user_id: userid, _token: token},
+            data: {
+                user_id: userid,
+                _token: token
+            },
             dataType: "json",
-            success: function (data) {
-            }
+            success: function (data) {}
         });
     }
 
@@ -36,18 +35,23 @@
         $.ajax({
             type: "GET",
             url: "{{ url('setUserChatId') }}",
-            data: {user_id: userid, chat_id: chatid, _token: token},
+            data: {
+                user_id: userid,
+                chat_id: chatid,
+                _token: token
+            },
             dataType: "json",
-            success: function (data) {
-            }
+            success: function (data) {}
         });
-    }       
+    }
 
     function getUsersOnline() {
         $.ajax({
             type: "GET",
             url: "{{ url('getUsersOnline') }}",
-            data: {_token: token},
+            data: {
+                _token: token
+            },
             dataType: "json",
             success: function (data) {
                 var validation_failed = data.validation_failed;
@@ -60,7 +64,7 @@
                             var arrValues = rtnVal.split(";");
 
                             for (i = 0; i < arrValues.length; i++) {
-                                
+
                                 if (userId != arrValues[i].split("|")[1]) {
                                     var elemUsersOnline = $("#onlineUsers").find("#userid-" + arrValues[i].split("|")[1]);
 
@@ -82,8 +86,7 @@
                                     }
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             if (userId != rtnVal.split("|")[1]) {
                                 var elemUsersOnline = $("#onlineUsers").find("#userid-" + rtnVal.split("|")[1]);
 
@@ -105,7 +108,7 @@
                                 }
                             }
                         }
-                        
+
                     }
                     refreshUsersOnline();
                 }
@@ -117,7 +120,10 @@
         $.ajax({
             type: "GET",
             url: "{{ url('removeUsersOffline') }}",
-            data: {chat_id: chatid, _token: token},
+            data: {
+                chat_id: chatid,
+                _token: token
+            },
             dataType: "json",
             success: function (data) {
                 var validation_failed = data.validation_failed;
@@ -125,7 +131,7 @@
 
                 if (validation_failed == 0) {
                     console.log("users offline");
-                            
+
                     var elemUsersOffline = $("#onlineUsers").find("#userid-" + rtnVal);
 
                     if (elemUsersOffline.html() != undefined) {
@@ -141,12 +147,10 @@
         $("#onlineUsers").scrollTop($("#onlineUsers")[0].scrollHeight);
     }
 
-    function createChatTab(id, uname, prof_pic, status) 
-    {
+    function createChatTab(id, uname, prof_pic, status) {
         var elemChatTabs = $("#chatarea_cont").find("#cb" + id);
 
-        if (elemChatTabs.html() == undefined)
-        {
+        if (elemChatTabs.html() == undefined) {
             var elemToCreate = "<div id=\"cb" + id + "\" class=\"chatarea_body\">";
             elemToCreate += "<div class=\"cinfo_cont\">";
             elemToCreate += "<img class=\"img-rounded chatimg\" src=\"" + ((prof_pic) == "" ? "{{asset('profiles/no_img.jpg')}}" : "{{asset('profiles/')}}" + "/" + prof_pic) + "\"/>";
@@ -160,12 +164,13 @@
             elemToCreate += "<div class=\"buble_area_container\">";
             elemToCreate += "<div class=\"bubble_area\">";
             elemToCreate += "<ul>";
-            elemToCreate += "<li class=\"status\">is typing a message...</li>";
+            //elemToCreate += "<li class=\"status\">is typing a message...</li>";
             elemToCreate += "</ul>";
             elemToCreate += "</div>";
             elemToCreate += "</div>"
             elemToCreate += "<div class=\"cinput_cont\">";
-            elemToCreate += "<textarea id=\"chatInput" + id + "\" class=\"chatinput\" rows=\"2\" onkeyup=\"keypress(event, " + id + ")\" placeholder=\"Enter your text here...\"></textarea>";
+            elemToCreate += "<ul><li id=\"typeStat-" + id + "\" class=\"status\"></li></ul>";
+            elemToCreate += "<textarea onclick=\"setReadMsg()\" id=\"chatInput" + id + "\" class=\"chatinput\" rows=\"2\" onkeyup=\"keypress(event, " + id + ")\" placeholder=\"Enter your text here...\"></textarea>";
             elemToCreate += "</div>";
             elemToCreate += "</div>";
 
@@ -187,44 +192,63 @@
         }
     }
 
+    function setReadMsg() {
+        var from_id = "";
+
+        $("#chatarea_cont > div").each(function () {
+            var chatBox = $(this);
+            var from_id = "";
+
+            if (chatBox.attr("style") == "display: block;") {
+                from_id = chatBox.attr("id").replace("cb", "");
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('setReadMsgs') }}",
+                    data: {
+                        from_id: from_id,
+                        to_id: userId,
+                        _token: token
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        var validation_failed = data.validation_failed;
+                        
+                        if (validation_failed == 0) {
+                            var activeElem = $("#ctr-" + from_id);
+                            
+                            if (activeElem.html() != undefined) {
+                                activeElem.remove();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     function closeChatBox() {
         $("#chatarea_cont").hide();
     }
 
-    function addMessageToChatBox(usrid, tabid, message)
-    {
-        if (message.indexOf("typing") > -1)
-        {
-            /*if (tabid == 0)
-            {
-                $("#typestatus" + tabid).html(message);
-            }
-            else
-            {
-                if (tabid == userId)
-                {
-                    $("#typestatus" + usrid).html(message);
+    function addMessageToChatBox(usrid, tabid, message) {
+        if (message.indexOf("typing") > -1) {
+            if (tabid == 0) {
+                $("#typeStat-" + tabid).html(message);
+            } else {
+                if (tabid == userId) {
+                    $("#typeStat-" + usrid).html(message);
                 }
-            }*/
-        }
-
-        else if (message.indexOf("none") > -1)
-        {
-            /*if (tabid == 0)
-            {
-                $("#typestatus" + tabid).html("");
             }
-            else
-            {
-                $("#typestatus" + usrid).html("");
-            }*/
-        }
-        else if (message.indexOf("Connection established!") > -1)
-        {
+        } else if (message.indexOf("none") > -1) {
+            if (tabid == 0) {
+                $("#typeStat-" + tabid).html("");
+            } else {
+                $("#typeStat-" + usrid).html("");
+            }
+        } else if (message.indexOf("Connection established!") > -1) {
             getUsersOnline();
-        }
-        else if (message.indexOf("is online") > -1)
-        {
+        } else if (message.indexOf("is online") > -1) {
             getUsersOnline();
 
             /*if (usrid == 1 && userId != usrid)
@@ -238,96 +262,107 @@
                 $("#chatMessages" + tabid).append("<li>" + ((usrid == 1) ? "Admin is online" : message) + "</li>");
                 $("#chatMessages" + tabid).scrollTop($("#chatMessages" + tabid)[0].scrollHeight);
             }*/
-        }
-        else
-        {
-            if (message.indexOf("Me:") > -1)
-            {
+        } else {
+            if (message.indexOf("Me:") > -1) {
                 $("#cb" + tabid + " .bubble_area ul").append("<li class=\"self\">" + message + "</li>");
-                $("#cb" + tabid + " .bubble_area").animate({ scrollTop: $("#cb" + tabid + " .bubble_area ul li:last").offset().top }, 1000);
-            }
-            else
-            {
+                $("#cb" + tabid + " .bubble_area").animate({
+                    scrollTop: $("#cb" + tabid + " .bubble_area ul li:last").offset().top
+                }, 1000);
+            } else {
                 // If from user to user
-                if (userId == tabid)
-                {
+                if (userId == tabid) {
                     var prof_pic = $("#userid-" + usrid + " img").attr("src");
                     prof_pic = prof_pic.split("/")[4];
 
                     createChatTab(usrid, message.split(":")[0], prof_pic, 1);
 
                     $("#cb" + usrid + " .bubble_area ul").append("<li class=\"other\">" + ((usrid == 0) ? "Admin:" + message.split(":")[1] : message) + "</li>");
-                    $("#cb" + usrid + " .bubble_area").animate({ scrollTop: $("#cb" + usrid + " .bubble_area ul li:last").offset().top }, 1000);
+                    $("#cb" + usrid + " .bubble_area").animate({
+                        scrollTop: $("#cb" + usrid + " .bubble_area ul li:last").offset().top
+                    }, 1000);
+                    
+                    $("#chatarea_cont > div").each(function () {
+                        var chatBox = $(this);
+                        alert(chatBox.attr("id"));
+                        /*var from_id = "";
+                        
+                        if (chatBox.attr("style") != "display: block;") {
+                            from_id = chatBox.attr("id").replace("cb", "");
+                            
+                            if (from_id != usrid) {
+                                var ctrNo = 1;
+                                var findElem = $("#userid-" + usrid).find("#ctr-" + usrid);
 
-                    var ctrNo = 1;
+                                if (findElem.html() == undefined) {
+                                    $("<div id=\"ctr-" + usrid + "\" class=\"newchatmsg btn btn-primary btn-circle btn-xs\">" + ctrNo + "</div>").insertAfter("#userid-" + usrid + " > img");
+                                    alert("x");
+                                } 
+                                else {
+                                    var currCtr = $("#ctr-" + usrid).html();
+                                    var newCtr = (parseInt(currCtr)) + 1;
 
-                    var findElem = $("#userid-" + usrid).find("#ctr-" + usrid);
-
-                    if (findElem.html() == undefined) {
-                        $("<div id=\"ctr-" + usrid + "\" class=\"newchatmsg btn btn-primary btn-circle btn-xs\">" + ctrNo + "</div>").insertAfter("#userid-" + usrid + " > img");
-                    }
-                    else {
-                        var currCtr = $("#ctr-" + usrid).html();
-                        var newCtr = (parseInt(currCtr)) + 1;
-
-                        $("#ctr-" + usrid).html(newCtr);
-                    }
-
-                    //
+                                    $("#ctr-" + usrid).html(newCtr);
+                                    alert("x1");
+                                }
+                            }
+                        }*/
+                    });
                 }
             }
         }
     }
 
-    function keypress(e, id)
-    {
-        if (e.keyCode == 13)
-        {
+    function keypress(e, id) {
+        if (e.keyCode == 13) {
             var message = $("#chatInput" + id).val();
 
-            if (id == 0)
-            {
+            if (id == 0) {
                 conn.send(userId + ";" + id + ";" + userName + ": " + message);
                 addMessageToChatBox(userId, id, "Me: " + message);
-            }
-            else
-            {
+            } else {
                 $.ajax({
                     type: "GET",
                     url: "{{ url('getUserName') }}",
-                    data: {user_id: id, _token: token},
+                    data: {
+                        user_id: id,
+                        _token: token
+                    },
                     dataType: "json",
                     success: function (data) {
                         var validation_failed = data.validation_failed;
                         var rtnVal = data.return_value;
                         var is_active = data.is_active;
 
-                        if (validation_failed == 0) 
-                        {
-                            if (is_active == 1)
-                            {
+                        if (validation_failed == 0) {
+                            if (is_active == 1) {
                                 // If user is online then do below
                                 conn.send(userId + ";" + id + ";" + userName + ": " + message);
                                 $.ajax({
                                     type: "POST",
                                     url: "{{ url('postMessageToUser') }}",
-                                    data: {from_id: userId, to_id: id, message: message, _token: token},
+                                    data: {
+                                        from_id: userId,
+                                        to_id: id,
+                                        message: message,
+                                        _token: token
+                                    },
                                     dataType: "json",
-                                    success: function (data) {
-                                    }
+                                    success: function (data) {}
                                 });
                                 addMessageToChatBox(userId, id, "Me: " + message);
-                            }
-                            else
-                            {
+                            } else {
                                 //If user is offline then do below
                                 $.ajax({
                                     type: "POST",
                                     url: "{{ url('postMessageToUser') }}",
-                                    data: {from_id: userId, to_id: id, message: message, _token: token},
+                                    data: {
+                                        from_id: userId,
+                                        to_id: id,
+                                        message: message,
+                                        _token: token
+                                    },
                                     dataType: "json",
-                                    success: function (data) {
-                                    }
+                                    success: function (data) {}
                                 });
                                 addMessageToChatBox(userId, id, "Me: " + message);
                             }
@@ -338,22 +373,18 @@
 
             $("#chatInput" + id).val("");
             conn.send(userId + ";" + id + ";none");
-        }
-        else
-        {
-            //conn.send(userId + ";" + id + ";" + ((userId == 1) ? "Admin is typing ..." : userName + " is typing ..."));
+        } else {
+            conn.send(userId + ";" + id + ";" + ((userId == 0) ? "Admin is typing ..." : userName + " is typing ..."));
         }
     }
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         conn = new WebSocket('ws://' + uri + ':' + port);
 
-        conn.onerror = function (event) {
-        }
+        conn.onerror = function (event) {}
 
-        conn.onclose = function (event)
-        {
+        conn.onclose = function (event) {
             var reason;
 
             if (event.code == 1000)
@@ -386,15 +417,13 @@
                 reason = "Unknown reason";
         };
 
-        conn.onopen = function (e)
-        {
+        conn.onopen = function (e) {
             setUserOnline(userId);
             addMessageToChatBox(userId, 0, "Connection established!");
             conn.send(userId + ";" + "0;" + userName + " is online");
         };
 
-        conn.onmessage = function (e)
-        {
+        conn.onmessage = function (e) {
             if (e.data.indexOf("user_connected") > -1) {
                 var r_conn_chatid = e.data.split(";")[0];
                 var r_userid = e.data.split(";")[2];
@@ -402,14 +431,12 @@
                 if (r_conn_chatid == r_userid) {
                     setUserChatId(userId, r_conn_chatid);
                 }
-            }
-            else if (e.data.indexOf("user_disconnected") > -1) {
+            } else if (e.data.indexOf("user_disconnected") > -1) {
                 var r_disconn_chatid = e.data.split(";")[0];
                 var r_userid = e.data.split(";")[2];
 
                 removeUsersOffline(r_disconn_chatid);
-            }
-            else {
+            } else {
                 var uid = e.data.split(";")[0];
                 var tabid = e.data.split(";")[1];
                 var themsg = e.data.split(";")[2];
@@ -418,7 +445,7 @@
             }
         };
     });
-    </script>
+</script>
 
 </body>
 
