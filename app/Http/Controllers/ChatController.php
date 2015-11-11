@@ -11,6 +11,7 @@ use Input;
 use App\User;
 use Response;
 use App\Inbox;
+use App\ChatGroup;
 
 class ChatController extends Controller
 {
@@ -103,6 +104,45 @@ class ChatController extends Controller
         return Response::json(array(
             'validation_failed' => 0
         ));
+    }
+
+    public function setChatGroup() {
+      $createdby_id = Input::get("createdby_id");
+      $groupname = Input::get("groupname");
+      $chatgroupids = Input::get("chatgroupids");
+      $chatgroupids = rtrim($chatgroupids, ";");
+
+      $chatGroup = new ChatGroup();
+
+      $chatGroup->group_name = $groupname;
+      $chatGroup->createdby_id = $createdby_id;
+      $chatGroup->group_ids = $chatgroupids;
+      $chatGroup->save();
+
+      return Response::json(array(
+          'validation_failed' => 0,
+          'return_value' => $chatGroup->id
+      ));
+    }
+
+    public function getUsersInfo() {
+      $authid = Input::get("authid");
+
+      $users_info = User::select('id', 'firstname', 'lastname')->where('id', '<>', $authid)->where('active', '=', 1)->get();
+
+      $return_value = "";
+
+      foreach($users_info as $user_info) {
+        $return_value .= $user_info->id . ",";
+        $return_value .= $user_info->firstname . " " . $user_info->lastname . ";";
+      }
+
+      $return_value = rtrim($return_value, ";");
+
+      return Response::json(array(
+        'validation_failed' => 0,
+        'return_value' => $return_value
+      ));
     }
 
     public function storeDeviceID() {
