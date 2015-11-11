@@ -16,6 +16,7 @@ class CreateChatGroupsTable extends Migration
             $table->increments('id');
             $table->string('group_name', 100);
             $table->string('group_ids', 100);
+            $table->integer('createdby_id');
             $table->timestamps();
         });
     }

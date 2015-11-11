@@ -1,3 +1,20 @@
+<div id="dialog-form" title="Create new group">
+  <p class="validateTips">All form fields are required.</p>
+ 
+  <form id="frmCreateGroup">
+    <fieldset>
+      <label for="name">Group name</label>
+      <input type="text" name="group_name" id="groupname" value="" class="text ui-widget-content ui-corner-all">
+      <label for="name">Users selection</label>
+      <select id="selUsers" multiple="multiple" name="usersselect" size="5">
+      </select>
+      <input id="hdnIds" value="" type="hidden" />
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -6,6 +23,12 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
+
+<!-- Custom jQuery Modal -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="{{ asset('css/jquery.multiselect.css') }}" />
+<script src="{{ asset('js/jquery.multiselect.js') }}"></script>
 
 <!-- Chat JavaScript -->
 <script>
@@ -17,6 +40,30 @@
     var port = "9090";
     var uri = "{{ explode(':', str_replace('http://', '', str_replace('https://', '', App::make('url')->to('/'))))[0] }}";
     port = port.length == 0 ? '9090' : port;
+
+    var dialog, form;
+
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Create": createChatGroup,
+        Cancel: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        //allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "#frmCreateGroup" ).on( "submit", function( event ) {
+      event.preventDefault();
+      createChatGroup();
+    });
 
     function setUserOnline(userid) {
         $.ajax({
@@ -192,9 +239,52 @@
         }
     }
 
-    function setReadMsg() {
-        var from_id = "";
+    function createChatGroupTab(id, uname, prof_pic, status) {
+        var elemChatTabs = $("#chatarea_cont").find("#cbg" + id);
 
+        if (elemChatTabs.html() == undefined) {
+            var elemToCreate = "<div id=\"cbg" + id + "\" class=\"chatarea_body\">";
+            elemToCreate += "<div class=\"cinfo_cont\">";
+            elemToCreate += "<img class=\"img-rounded chatimg\" src=\"" + ((prof_pic) == "" ? "{{asset('profiles/no_img.jpg')}}" : "{{asset('profiles/')}}" + "/" + prof_pic) + "\"/>";
+            elemToCreate += "<div class=\"closechat\" onclick=\"closeChatBox()\"><span class=\"glyphicon glyphicon-chevron-right\"></span></div>";
+            elemToCreate += "<div class=\"olname\">";
+            elemToCreate += "<strong>" + ((id == 0) ? "Admin" : uname) + "</strong>";
+            elemToCreate += "<div class=\"oltitle\">Group</div>";
+            elemToCreate += "</div>";
+            elemToCreate += "<div style=\"clear:both;\"></div>";
+            elemToCreate += "</div>";
+            elemToCreate += "<div class=\"buble_area_container\">";
+            elemToCreate += "<div class=\"bubble_area\">";
+            elemToCreate += "<ul>";
+            //elemToCreate += "<li class=\"status\">is typing a message...</li>";
+            elemToCreate += "</ul>";
+            elemToCreate += "</div>";
+            elemToCreate += "</div>"
+            elemToCreate += "<div class=\"cinput_cont\">";
+            elemToCreate += "<ul><li id=\"typeGroupStat-" + id + "\" class=\"status\"></li></ul>";
+            elemToCreate += "<textarea onclick=\"setReadMsgGroup()\" id=\"chatGroupInput" + id + "\" class=\"chatinput\" rows=\"2\" onkeyup=\"keypressGroup(event, " + id + ")\" placeholder=\"Enter your text here...\"></textarea>";
+            elemToCreate += "</div>";
+            elemToCreate += "</div>";
+
+            $("#chatarea_cont").append(elemToCreate);
+        }
+
+        /*var activeElem = $("#chatarea_cont > div");
+
+        activeElem.each(function() {
+            var aa = $(this).html();
+
+            alert(aa);
+        });*/
+
+        if (status == 0) {
+            $("#chatarea_cont").show();
+            $(".chatarea_body").hide();
+            $("#cbg" + id).show();
+        }
+    }
+
+    function setReadMsg() {
         $("#chatarea_cont > div").each(function () {
             var chatBox = $(this);
             var from_id = "";
@@ -227,6 +317,38 @@
         });
     }
 
+    function setReadMsgGroup() {
+        $("#chatarea_cont > div").each(function () {
+            var chatBox = $(this);
+            var group_id = "";
+
+            if (chatBox.attr("style") == "display: block;") {
+                group_id = chatBox.attr("id").replace("cbg", "");
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('setReadMsgs') }}",
+                    data: {
+                        group_id: group_id,
+                        _token: token
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        var validation_failed = data.validation_failed;
+                        
+                        if (validation_failed == 0) {
+                            var activeElem = $("#ctrg-" + group_id);
+                            
+                            if (activeElem.html() != undefined) {
+                                activeElem.remove();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     function closeChatBox() {
         $("#chatarea_cont").hide();
     }
@@ -246,6 +368,9 @@
             } else {
                 $("#typeStat-" + usrid).html("");
             }
+        } else if (message.indexOf("groupnull") > -1) {
+            $("#typeGroupStat-" + usrid).html("");
+
         } else if (message.indexOf("Connection established!") > -1) {
             getUsersOnline();
         } else if (message.indexOf("is online") > -1) {
@@ -373,6 +498,112 @@
         }
     }
 
+    function keypressGroup(e, id) {
+        if (e.keyCode == 13) {
+            var message = $("#chatGroupInput" + id).val();
+
+            if (id == 0) {
+                conn.send(userId + ";" + id + ";" + userName + ": " + message);
+                addMessageToChatBox(userId, id, "Me: " + message);
+            } else {
+                /*$.ajax({
+                    type: "GET",
+                    url: "{{ url('getUserName') }}",
+                    data: {
+                        user_id: id,
+                        _token: token
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        var validation_failed = data.validation_failed;
+                        var rtnVal = data.return_value;
+                        var is_active = data.is_active;
+
+                        if (validation_failed == 0) {
+                            if (is_active == 1) {
+                                // If user is online then do below
+                                conn.send(userId + ";" + id + ";" + userName + ": " + message);
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ url('postMessageToUser') }}",
+                                    data: {
+                                        from_id: userId,
+                                        to_id: id,
+                                        message: message,
+                                        _token: token
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {}
+                                });
+                                addMessageToChatBox(userId, id, "Me: " + message);
+                            } else {
+                                //If user is offline then do below
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ url('postMessageToUser') }}",
+                                    data: {
+                                        from_id: userId,
+                                        to_id: id,
+                                        message: message,
+                                        _token: token
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {}
+                                });
+                                addMessageToChatBox(userId, id, "Me: " + message);
+                            }
+                        }
+                    }
+                });*/
+            }
+
+            $("#chatGroupInput" + id).val("");
+            conn.send(userId + ";" + id + ";groupnull");
+        } else {
+            conn.send(userId + ";g-" + id + ";" + ((userId == 0) ? "Admin is typing ..." : userName + " is typing ..."));
+        }
+    }
+
+    function openChatGroupDialog() {
+        dialog.dialog( "open" );
+    }
+
+    function createChatGroup() {
+        var groupname = $("#groupname").val();
+        var chatgroupids = $("#hdnIds").val();
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url('setChatGroup') }}",
+            data: {
+                createdby_id: userId,
+                groupname: groupname,
+                chatgroupids: chatgroupids,
+                _token: token
+            },
+            dataType: "json",
+            success: function (data) {
+                var validation_failed = data.validation_failed;
+                var return_value = data.return_value;
+
+                var renderHTML = "<li id=\"groupid-" + return_value + "\" class=\"chatuserlist\" chatbox-id=\"groupid-" + return_value + "\" onclick=\"createChatGroupTab(" + return_value + ", '" + ((return_value == 0) ? "Admin" : groupname) + "', 'no_img.jpg', 0)\">";
+                renderHTML += "<img class=\"img-rounded chatimg\" src=\"{{asset('profiles/no_img.jpg')}}\" />";
+                renderHTML += "<div class=\"olindicator\"><span class=\"fa fa-circle\"></span></div>";
+                renderHTML += "<div class=\"olname\">";
+                renderHTML += "<strong class=\"text-primary\">" + groupname + "</strong>";
+                renderHTML += "<div class=\"oltitle\">Group</div>";
+                renderHTML += "</div>";
+                renderHTML += "<div style=\"clear:both;\"></div>";
+                renderHTML += "</li>";
+
+                $("#onlineUsers").append(renderHTML);
+
+                dialog.dialog("close");
+            }
+        });
+        //
+    }
+
 
     $(document).ready(function () {
         conn = new WebSocket('ws://' + uri + ':' + port);
@@ -439,6 +670,58 @@
                 addMessageToChatBox(uid, tabid, themsg);
             }
         };
+
+
+        var btnAddGroup = $(".navbar-top-links").find("#btnAddGroup");
+
+        if (btnAddGroup.html() == undefined) {
+            $("<li class=\"dropdown\"><a href=\"javascript:void(0)\" onclick=\"openChatGroupDialog()\">Create Chat Group</a></li>").insertBefore(".navbar-top-links > li:eq(0)");
+        }
+
+        var tempValue = "";
+
+        
+
+        $.ajax({
+            type: "GET",
+            url: "{{ url('getUsersInfo') }}",
+            data: {
+                authid: userId,
+                _token: token
+            },
+            dataType: "json",
+            success: function (data) {
+                var validation_failed = data.validation_failed;
+                var return_value = data.return_value;
+
+                if (validation_failed == 0) {
+                    var arrUsers = return_value.split(";");
+
+                    var x;
+                    for (x in arrUsers) {
+                        $("#selUsers").append("<option value=\"" + arrUsers[x].split(",")[0] + "\">" + arrUsers[x].split(",")[1] + "</option>");
+                    }
+
+                    $("#selUsers").multiselect({
+                        click: function(event, ui){
+
+                            if (ui.checked) {
+                                tempValue += ui.value + ";"
+                            }
+                            else {
+                                tempValue = tempValue.replace(ui.value + ";", "");
+                            }
+
+                            //tempValue = tempValue.substring(0, tempValue.length - 1);
+
+                            $("#hdnIds").val(tempValue);
+                        }
+                    });
+
+                }
+            }
+        });
+
     });
 </script>
 
